@@ -1,0 +1,9 @@
+Place your video file here and name it "boostify-bg.mp4"
+
+This is where your background video should go. The video will be displayed as the background of your home page.
+
+Steps:
+1. Rename your video file to "boostify-bg.mp4"
+2. Place it in this directory (public/videos/)
+3. The website will automatically use this video as the background
+
