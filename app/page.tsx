@@ -9,7 +9,7 @@ import { Volume2, VolumeX } from "lucide-react"
 export default function Home() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [audioLoaded, setAudioLoaded] = useState(false)
   const [audioError, setAudioError] = useState<string | null>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
@@ -34,6 +34,9 @@ export default function Home() {
       const handleCanPlayThrough = () => {
         console.log("Audio loaded and can play")
         setAudioLoaded(true)
+
+        // Try to play automatically when loaded
+        playAudio()
       }
 
       const handlePlay = () => {
@@ -76,6 +79,37 @@ export default function Home() {
     }
   }, [])
 
+  // Function to attempt to play audio
+  const playAudio = () => {
+    if (!audioRef.current) return
+
+    const playPromise = audioRef.current.play()
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          console.log("Audio playback started successfully")
+        })
+        .catch((error) => {
+          console.error("Audio playback was prevented:", error)
+          setIsPlaying(false)
+          setAudioError("Browser blocked autoplay. Click the volume button to play.")
+
+          // Add a visible notification to inform the user they need to interact
+          const notification = document.createElement("div")
+          notification.className =
+            "fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded z-50"
+          notification.textContent = "Click the volume button to enable audio"
+          notification.style.animation = "fadeOut 5s forwards"
+          document.body.appendChild(notification)
+
+          setTimeout(() => {
+            document.body.removeChild(notification)
+          }, 5000)
+        })
+    }
+  }
+
   // Function to toggle audio playback
   const toggleAudio = () => {
     console.log("Toggle audio button clicked")
@@ -90,6 +124,7 @@ export default function Home() {
       if (isPlaying) {
         console.log("Attempting to pause audio")
         audioRef.current.pause()
+        setIsPlaying(false)
       } else {
         console.log("Attempting to play audio")
         const playPromise = audioRef.current.play()
@@ -98,6 +133,7 @@ export default function Home() {
           playPromise
             .then(() => {
               console.log("Audio playback started successfully")
+              setIsPlaying(true)
             })
             .catch((error) => {
               console.error("Audio playback was prevented:", error)
@@ -193,8 +229,8 @@ export default function Home() {
           </div>
         </Link>
         <div className="flex gap-6">
-          <Link href="/tutorials" className="hover:text-gray-300 transition-colors">
-            Tutorials
+          <Link href="/performers" className="hover:text-gray-300 transition-colors">
+            Performers
           </Link>
           <Link href="/about" className="hover:text-gray-300 transition-colors">
             About
@@ -245,7 +281,7 @@ export default function Home() {
           <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
             Download the App
           </Button>
-          <Link href="/tutorials">
+          <Link href="/performers">
             <Button
               variant="outline"
               className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
@@ -255,6 +291,13 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <style jsx>{`
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+`}</style>
     </div>
   )
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    video {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .info {
+      background: #333;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Video Test Page</h1>
+    <div class="info">
+      <p>This page tests if your video file is accessible and can be played correctly.</p>
+    </div>
+    
+    <h2>Video from /videos/performers-video.mp4</h2>
+    <video controls>
+      <source src="/videos/performers-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
+    <div class="info">
+      <h3>Troubleshooting:</h3>
+      <ul>
+        <li>If the video doesn't appear, check that the file exists at /public/videos/performers-video.mp4</li>
+        <li>Make sure the video file is a valid MP4 file</li>
+        <li>Try a different browser to rule out browser-specific issues</li>
+        <li>Check the browser console for any errors</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
+

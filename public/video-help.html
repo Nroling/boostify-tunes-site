@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Help</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      color: #2563eb;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #4b5563;
+      margin-top: 30px;
+    }
+    .method {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .steps {
+      list-style-type: decimal;
+      padding-left: 20px;
+    }
+    .steps li {
+      margin-bottom: 10px;
+    }
+    .note {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 10px 15px;
+      margin: 15px 0;
+    }
+    code {
+      background: #f1f5f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>How to Get a Direct Video URL for Your Website</h1>
+  
+  <p>This guide will help you get a direct URL for your video that can be used in the Performers page.</p>
+  
+  <div class="method">
+    <h2>Method 1: Upload to YouTube (Recommended)</h2>
+    <ol class="steps">
+      <li>Go to <a href="https://youtube.com" target="_blank">YouTube</a> and sign in</li>
+      <li>Click the camera icon in the top right and select "Upload video"</li>
+      <li>Follow the steps to upload your video</li>
+      <li>Set the video to "Unlisted" if you don't want it to be public</li>
+      <li>Once uploaded, copy the video URL from your browser</li>
+      <li>Extract the video ID (the part after "v=" in the URL)</li>
+      <li>Use the YouTube embed version of the Performers page</li>
+    </ol>
+    <div class="note">
+      <strong>Note:</strong> YouTube embed is the most reliable way to ensure autoplay works across browsers.
+    </div>
+  </div>
+  
+  <div class="method">
+    <h2>Method 2: Use Cloudinary</h2>
+    <ol class="steps">
+      <li>Sign up for a free <a href="https://cloudinary.com" target="_blank">Cloudinary</a> account</li>
+      <li>Go to the Media Library and click "Upload"</li>
+      <li>Upload your video file</li>
+      <li>Once uploaded, click on the video to view its details</li>
+      <li>Look for the "Video URL" or "Secure URL"</li>
+      <li>Copy this URL and use it in the direct video player version</li>
+    </ol>
+    <div class="note">
+      <strong>Note:</strong> Cloudinary offers a generous free tier and optimizes videos for web delivery.
+    </div>
+  </div>
+  
+  <div class="method">
+    <h2>Method 3: Use a Direct Google Drive Link</h2>
+    <ol class="steps">
+      <li>Upload your video to Google Drive</li>
+      <li>Right-click the file and select "Get link"</li>
+      <li>Make sure it's set to "Anyone with the link"</li>
+      <li>Copy the link</li>
+      <li>Replace the file ID in this format: <code>https://drive.google.com/uc?export=download&id=YOUR_FILE_ID</code></li>
+      <li>Use this URL in the direct video player version</li>
+    </ol>
+    <div class="note">
+      <strong>Note:</strong> Google Drive has bandwidth limitations and may not work reliably for larger videos or high traffic.
+    </div>
+  </div>
+  
+  <h2>Testing Your Video</h2>
+  <p>After getting your direct URL, you can test it by:</p>
+  <ol>
+    <li>Opening a new browser tab</li>
+    <li>Pasting the URL directly in the address bar</li>
+    <li>If the video plays directly in the browser, it should work in your website</li>
+  </ol>
+  
+  <div class="note">
+    <strong>Important:</strong> For the best user experience, consider compressing your video to reduce file size while maintaining quality. Tools like <a href="https://handbrake.fr/" target="_blank">HandBrake</a> can help with this.
+  </div>
+</body>
+</html>
+

@@ -21,19 +21,36 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormState((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      // Using FormSubmit service to send the form data
+      const formData = new FormData()
+      formData.append("name", formState.name)
+      formData.append("email", formState.email)
+      formData.append("subject", formState.subject)
+      formData.append("message", formState.message)
+
+      // This is the FormSubmit endpoint with your email
+      const response = await fetch("https://formsubmit.co/support@boostifytunes.com", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error("Form submission failed")
+      }
+
       setIsSubmitted(true)
       setFormState({
         name: "",
@@ -41,7 +58,12 @@ export default function Contact() {
         subject: "",
         message: "",
       })
-    }, 1500)
+    } catch (err) {
+      console.error("Error submitting form:", err)
+      setError("There was a problem sending your message. Please try again or email us directly.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -82,7 +104,7 @@ export default function Contact() {
                   <Mail className="h-6 w-6 mr-4 mt-1 text-gray-400" />
                   <div>
                     <h3 className="font-medium">Email Us</h3>
-                    <p className="text-gray-300">CustomerService@boostifytunes.com</p>
+                    <p className="text-gray-300">support@boostifytunes.com</p>
                   </div>
                 </div>
 
@@ -117,6 +139,15 @@ export default function Contact() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Hidden input for FormSubmit to prevent spam */}
+                    <input type="text" name="_honey" style={{ display: "none" }} />
+
+                    {/* Disable captcha */}
+                    <input type="hidden" name="_captcha" value="false" />
+
+                    {/* Redirect after submission - use your actual domain */}
+                    <input type="hidden" name="_next" value="https://boostifytunes.com/contact?success=true" />
+
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium">
                         Your Name
@@ -178,6 +209,8 @@ export default function Contact() {
                         className="bg-gray-700 border-gray-600"
                       />
                     </div>
+
+                    {error && <div className="p-3 bg-red-900/50 border border-red-700 rounded-md text-sm">{error}</div>}
                   </form>
                 )}
               </CardContent>

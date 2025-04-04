@@ -1,0 +1,10 @@
+Place your performers video file here and name it "performers-video.mp4"
+
+This is where your performers video should go. The video will be displayed on the Performers page.
+
+Steps:
+1. Download the video from your Google Drive link
+2. Rename the video file to "performers-video.mp4"
+3. Place it in this directory (public/videos/)
+4. The website will automatically use this video on the Performers page
+
