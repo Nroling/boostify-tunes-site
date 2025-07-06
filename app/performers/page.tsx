@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import "@/app/animations.css";
 import Image from "next/image";
 import {
   Card,
