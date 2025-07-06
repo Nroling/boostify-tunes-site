@@ -60,6 +60,15 @@ export default function Tutorials() {
       category: "advanced",
       thumbnail: "/placeholder.svg?height=200&width=350",
     },
+    {
+      id: "adding-performer-event",
+      title: "Adding a Performer Event",
+      description: "Step-by-step guide to adding a new performer event.",
+      duration: "3:45",
+      category: "performers",
+      thumbnail: "/placeholder.svg?height=200&width=350",
+      videoSrc: "/Media/Performer Tutorials/Adding_a_Performer_Event.mp4",
+    },
   ]
 
   return (
