@@ -53,21 +53,13 @@ export default function Tutorials() {
       thumbnail: "/placeholder.svg?height=200&width=350",
     },
     {
-      id: "analytics",
-      title: "Understanding Analytics",
-      description: "How to use Boostify analytics to grow your audience",
-      duration: "9:54",
-      category: "advanced",
-      thumbnail: "/placeholder.svg?height=200&width=350",
-    },
-    {
       id: "adding-performer-event",
       title: "Adding a Performer Event",
       description: "Step-by-step guide to adding a new performer event.",
       duration: "3:45",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      videoSrc: "/Media/Performer Tutorials/Adding_a_Performer_Event.mp4",
+      videoSrc: "https://drive.google.com/file/d/1of9x7JmX3oBiPnJkSx_gw0gjx4_zD7AR/view?usp=sharing",
     },
   ]
 
