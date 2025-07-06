@@ -47,4 +47,22 @@ export default function PerformersPage() {
       </div>
 
       {/* Your Content */}
-      <div style={{ position
+      <div style={{ position: "relative", zIndex: 10, textAlign: "center", paddingTop: "200px" }}>
+        <h1 style={{ fontSize: "3rem", color: "#fff" }}>Meet the Performers</h1>
+        <p style={{ fontSize: "1.25rem", color: "#ddd", marginTop: "1rem" }}>
+          Enjoy the show with our amazing lineup of artists!
+        </p>
+        <div style={{ marginTop: "2rem" }}>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+            title="YouTube video player"
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  );
+}
