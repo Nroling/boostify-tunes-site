@@ -1,99 +1,127 @@
-/* app/animations.css */
-
-.concert-light {
+/* animations.css */
+.concert-light,
+.stage-lights,
+.laser-container,
+.crowd-container,
+.particles-container {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.8) 80%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-  animation: flicker 3s infinite ease-in-out;
-}
-.light-1 { top: 0; left: 0; animation-delay: 0s; }
-.light-2 { top: 0; right: 0; animation-delay: 1s; }
-.light-3 { bottom: 0; left: 50%; animation-delay: 2s; }
-
-@keyframes flicker {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
-}
-
-.stage-lights .spotlight {
-  position: absolute;
-  width: 4px;
-  height: 200px;
-  background: linear-gradient(to top, rgba(255, 255, 0, 0.5), transparent);
-  bottom: 0;
-  animation: beamMove 2s infinite ease-in-out;
-}
-.spotlight-1 { left: 20%; animation-delay: 0s; }
-.spotlight-2 { left: 35%; animation-delay: 0.3s; }
-.spotlight-3 { left: 50%; animation-delay: 0.6s; }
-.spotlight-4 { left: 65%; animation-delay: 0.9s; }
-.spotlight-5 { left: 80%; animation-delay: 1.2s; }
-
-@keyframes beamMove {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-.laser-container .laser {
-  position: absolute;
-  width: 2px;
-  height: 300px;
-  background: rgba(0, 255, 0, 0.7);
-  bottom: 0;
-  animation: laserFlash 1s infinite ease-in-out;
-}
-.laser-1 { left: 25%; animation-delay: 0s; }
-.laser-2 { left: 45%; animation-delay: 0.2s; }
-.laser-3 { left: 65%; animation-delay: 0.4s; }
-.laser-4 { left: 85%; animation-delay: 0.6s; }
-
-@keyframes laserFlash {
-  0%, 100% { opacity: 0; transform: scaleY(0.8); }
-  50% { opacity: 1; transform: scaleY(1.2); }
-}
-
-.crowd-container .crowd-row {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  height: 30px;
-  background: repeating-linear-gradient(
-    to right,
-    #111 0px,
-    #111 5px,
-    #222 5px,
-    #222 10px
-  );
-  animation: crowdBounce 1s infinite ease-in-out;
-}
-.crowd-row-1 { bottom: 0; animation-delay: 0s; }
-.crowd-row-2 { bottom: 35px; animation-delay: 0.2s; }
-.crowd-row-3 { bottom: 70px; animation-delay: 0.4s; }
-
-@keyframes crowdBounce {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.1); }
+  height: 100%;
+  overflow: hidden;
 }
 
-.particles-container .particle {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: #fff;
+/* your concert-light styles */
+.concert-light {
+  width: 100px;
+  height: 300px;
+  opacity: 0.7;
+  filter: blur(50px);
   border-radius: 50%;
-  animation: particleFloat 5s infinite ease-in-out;
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite;
 }
-.p1 { top: 50%; left: 10%; animation-delay: 0s; }
-.p2 { top: 60%; left: 20%; animation-delay: 0.5s; }
-.p3 { top: 70%; left: 30%; animation-delay: 1s; }
-.p4 { top: 80%; left: 40%; animation-delay: 1.5s; }
-.p5 { top: 90%; left: 50%; animation-delay: 2s; }
-.p6 { top: 60%; left: 60%; animation-delay: 2.5s; }
-.p7 { top: 70%; left: 70%; animation-delay: 3s; }
-.p8 { top: 80%; left: 80%; animation-delay: 3.5s; }
+.light-1 {
+  left: 20%;
+  background: linear-gradient(to bottom, #ff0055, #ff00ff);
+  animation: light-move-1 8s infinite alternate;
+}
+.light-2 {
+  left: 50%;
+  background: linear-gradient(to bottom, #00ffff, #0066ff);
+  animation: light-move-2 12s infinite alternate;
+}
+.light-3 {
+  left: 80%;
+  background: linear-gradient(to bottom, #ffaa00, #ff5500);
+  animation: light-move-3 10s infinite alternate;
+}
 
-@keyframes particleFloat {
-  0% { transform: translateY(0); opacity: 1; }
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* light move animations */
+@keyframes light-move-1 {
+  0%   { transform: translateY(100%) rotate(-20deg); }
+  100% { transform: translateY(-50%) rotate(20deg); }
+}
+@keyframes light-move-2 {
+  0%   { transform: translateY(80%) rotate(10deg); }
+  100% { transform: translateY(-70%) rotate(-10deg); }
+}
+@keyframes light-move-3 {
+  0%   { transform: translateY(90%) rotate(15deg); }
+  100% { transform: translateY(-60%) rotate(-15deg); }
+}
+
+/* spotlights */
+.spotlight {
+  width: 150px;
+  height: 500px;
+  bottom: -100px;
+  transform-origin: bottom center;
+  opacity: 0.7;
+  filter: blur(40px);
+  border-radius: 50% 50% 0 0;
+}
+
+.spotlight-1 { left: 10%; background: linear-gradient(to top, rgba(255,0,85,0), rgba(255,0,85,0.8)); animation: spotlight-move 8s infinite alternate; transform: rotate(-20deg); }
+.spotlight-2 { left: 30%; background: linear-gradient(to top, rgba(0,255,255,0), rgba(0,255,255,0.8)); animation: spotlight-move 12s infinite alternate-reverse; transform: rotate(-5deg); }
+.spotlight-3 { left: 50%; background: linear-gradient(to top, rgba(255,170,0,0), rgba(255,170,0,0.8)); animation: spotlight-move 10s infinite alternate; transform: rotate(0deg); }
+.spotlight-4 { left: 70%; background: linear-gradient(to top, rgba(0,102,255,0), rgba(0,102,255,0.8)); animation: spotlight-move 9s infinite alternate-reverse; transform: rotate(5deg); }
+.spotlight-5 { left: 90%; background: linear-gradient(to top, rgba(255,0,255,0), rgba(255,0,255,0.8)); animation: spotlight-move 11s infinite alternate; transform: rotate(20deg); }
+
+@keyframes spotlight-move {
+  0%   { transform: rotate(-30deg); opacity: 0.5; }
+  50%  { opacity: 0.8; }
+  100% { transform: rotate(30deg); opacity: 0.5; }
+}
+
+/* lasers */
+.laser {
+  height: 1px;
+  width: 100%;
+  background: white;
+  opacity: 0.7;
+  transform-origin: left center;
+}
+.laser-1 { top: 20%; animation: laser-sweep 8s infinite alternate; box-shadow: 0 0 10px 1px rgba(255,0,85,0.8); }
+.laser-2 { top: 40%; animation: laser-sweep 12s infinite alternate-reverse; box-shadow: 0 0 10px 1px rgba(0,255,255,0.8); }
+.laser-3 { top: 60%; animation: laser-sweep 10s infinite alternate; box-shadow: 0 0 10px 1px rgba(255,170,0,0.8); }
+.laser-4 { top: 80%; animation: laser-sweep 9s infinite alternate-reverse; box-shadow: 0 0 10px 1px rgba(0,102,255,0.8); }
+
+@keyframes laser-sweep {
+  0%   { transform: rotate(-5deg); opacity: 0.3; }
+  50%  { opacity: 0.7; }
+  100% { transform: rotate(5deg); opacity: 0.3; }
+}
+
+/* crowd silhouettes */
+.crowd-row-1 { bottom: 0; height: 60px; background: url(...); animation: crowd-sway 8s infinite alternate; }
+.crowd-row-2 { bottom: 30px; height: 50px; background: url(...); animation: crowd-sway 10s infinite alternate-reverse; }
+.crowd-row-3 { bottom: 60px; height: 40px; background: url(...); animation: crowd-sway 12s infinite alternate; }
+
+@keyframes crowd-sway {
+  0%   { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
+}
+
+/* particles */
+.particle { width: 5px; height: 5px; background: white; border-radius: 50%; opacity: 0.5; filter: blur(1px); }
+.p1 { left: 10%; top: 20%; animation: particle-float 15s infinite linear 0s; }
+.p2 { left: 30%; top: 40%; animation: particle-float 20s infinite linear 1s; }
+.p3 { left: 50%; top: 30%; animation: particle-float 18s infinite linear 2s; }
+.p4 { left: 70%; top: 50%; animation: particle-float 22s infinite linear 3s; }
+.p5 { left: 90%; top: 25%; animation: particle-float 17s infinite linear 4s; }
+.p6 { left: 20%; top: 60%; animation: particle-float 19s infinite linear 5s; }
+.p7 { left: 60%; top: 70%; animation: particle-float 21s infinite linear 6s; }
+.p8 { left: 80%; top: 35%; animation: particle-float 16s infinite linear 7s; }
+
+@keyframes particle-float {
+  0%   { transform: translate(0,0); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.5; }
+  100% { transform: translate(100px,-300px); opacity: 0; }
+}
