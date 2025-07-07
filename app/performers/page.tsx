@@ -1,6 +1,5 @@
-// app/performers/page.tsx
-
 import "../animations.css";
+import Tutorials from "../tutorials/page";
 
 export default function PerformersPage() {
   return (
@@ -46,7 +45,7 @@ export default function PerformersPage() {
         <div className="particle p8" />
       </div>
 
-      {/* Your Content */}
+      {/* Main Performer Content */}
       <div style={{ position: "relative", zIndex: 10, textAlign: "center", paddingTop: "200px" }}>
         <h1 style={{ fontSize: "3rem", color: "#fff" }}>Meet the Performers</h1>
         <p style={{ fontSize: "1.25rem", color: "#ddd", marginTop: "1rem" }}>
@@ -62,6 +61,11 @@ export default function PerformersPage() {
             allowFullScreen
           ></iframe>
         </div>
+      </div>
+
+      {/* Tutorials Grid at the bottom */}
+      <div style={{ position: "relative", zIndex: 10, marginTop: "4rem" }}>
+        <Tutorials />
       </div>
     </div>
   );
