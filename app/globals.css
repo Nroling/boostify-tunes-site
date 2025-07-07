@@ -38,9 +38,8 @@
   -webkit-animation: light-move-3 10s infinite alternate;
   animation: light-move-3 10s infinite alternate;
 }
-  left: 80%;
-  animation: light-move-3 10s infinite alternate;
-}
+  
+
 
 @keyframes light-move-1 {
   0% {
