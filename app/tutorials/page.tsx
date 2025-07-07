@@ -9,8 +9,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Play, Clock } from "lucide-react"
 
 export default function Tutorials() {
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
-
   const tutorials = [
     {
       id: "getting-started",
@@ -19,6 +17,7 @@ export default function Tutorials() {
       duration: "5:32",
       category: "basics",
       thumbnail: "/placeholder.svg?height=200&width=350",
+      videoSrc: "https://youtu.be/BwX4d6d1_uQ",
     },
     {
       id: "song-requests",
@@ -59,9 +58,13 @@ export default function Tutorials() {
       duration: "3:45",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      videoSrc: "https://drive.google.com/file/d/1of9x7JmX3oBiPnJkSx_gw0gjx4_zD7AR/view?usp=sharing",
+      videoSrc: "https://youtu.be/QZaJxnI5zFI",
     },
   ]
+
+  // Use the first tutorial as the main video
+  const mainTutorial = tutorials[0]
+  const otherTutorials = tutorials.slice(1)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
@@ -87,133 +90,57 @@ export default function Tutorials() {
           </div>
         </div>
 
-        {selectedVideo ? (
-          <div className="mb-8">
-            <div className="aspect-video bg-gray-800 rounded-lg mb-4 relative">
-              {/* Coming Soon Overlay */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 z-10">
-                <Clock className="h-16 w-16 mb-4 text-white opacity-70" />
-                <h3 className="text-2xl md:text-3xl font-bold text-white">Coming Soon</h3>
-                <p className="text-gray-300 mt-2 max-w-md text-center">
-                  We're currently working on creating high-quality tutorial videos for you. Check back soon!
-                </p>
-              </div>
-
-              {/* Video Placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center">
+        {/* Main Video Section */}
+        <div className="mb-12">
+          <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
+            {mainTutorial.videoSrc ? (
+              <iframe
+                src={mainTutorial.videoSrc}
+                title={mainTutorial.title}
+                className="w-full h-full rounded-lg"
+                allowFullScreen
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center w-full h-full">
                 <Play className="h-16 w-16 opacity-50" />
                 <span className="sr-only">Play video</span>
+                <p className="text-lg mt-4">Main tutorial video coming soon!</p>
               </div>
-            </div>
-            <h2 className="text-2xl font-bold mb-2">{tutorials.find((t) => t.id === selectedVideo)?.title}</h2>
-            <p className="text-gray-300 mb-4">{tutorials.find((t) => t.id === selectedVideo)?.description}</p>
-            <Button variant="outline" onClick={() => setSelectedVideo(null)} className="mb-8">
-              Back to all tutorials
-            </Button>
+            )}
           </div>
-        ) : (
-          <Tabs defaultValue="all" className="mb-8">
-            <TabsList className="bg-gray-800">
-              <TabsTrigger value="all">All Tutorials</TabsTrigger>
-              <TabsTrigger value="basics">Basics</TabsTrigger>
-              <TabsTrigger value="performers">For Performers</TabsTrigger>
-              <TabsTrigger value="payments">Payments</TabsTrigger>
-              <TabsTrigger value="advanced">Advanced</TabsTrigger>
-            </TabsList>
+          <h2 className="text-2xl font-bold mb-2">{mainTutorial.title}</h2>
+          <p className="text-gray-300 mb-4">{mainTutorial.description}</p>
+        </div>
 
-            <TabsContent value="all" className="mt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tutorials.map((tutorial) => (
-                  <Card key={tutorial.id} className="bg-gray-800 border-gray-700 overflow-hidden">
-                    <div
-                      className="aspect-video bg-gray-700 relative cursor-pointer"
-                      onClick={() => setSelectedVideo(tutorial.id)}
-                    >
-                      <img
-                        src={tutorial.thumbnail || "/placeholder.svg"}
-                        alt={tutorial.title}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {/* Coming Soon Overlay */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
-                        <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
-                        <p className="text-lg font-bold text-white">Coming Soon</p>
-                      </div>
-
-                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity z-20">
-                        <Play className="h-12 w-12" />
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm z-20">
-                        {tutorial.duration}
-                      </div>
-                    </div>
-                    <CardHeader className="pb-2">
-                      <CardTitle
-                        className="text-lg cursor-pointer hover:text-gray-300"
-                        onClick={() => setSelectedVideo(tutorial.id)}
-                      >
-                        {tutorial.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <CardDescription className="text-gray-400">{tutorial.description}</CardDescription>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            {["basics", "performers", "payments", "advanced"].map((category) => (
-              <TabsContent key={category} value={category} className="mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {tutorials
-                    .filter((tutorial) => tutorial.category === category)
-                    .map((tutorial) => (
-                      <Card key={tutorial.id} className="bg-gray-800 border-gray-700 overflow-hidden">
-                        <div
-                          className="aspect-video bg-gray-700 relative cursor-pointer"
-                          onClick={() => setSelectedVideo(tutorial.id)}
-                        >
-                          <img
-                            src={tutorial.thumbnail || "/placeholder.svg"}
-                            alt={tutorial.title}
-                            className="w-full h-full object-cover"
-                          />
-
-                          {/* Coming Soon Overlay */}
-                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
-                            <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
-                            <p className="text-lg font-bold text-white">Coming Soon</p>
-                          </div>
-
-                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity z-20">
-                            <Play className="h-12 w-12" />
-                          </div>
-                          <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm z-20">
-                            {tutorial.duration}
-                          </div>
-                        </div>
-                        <CardHeader className="pb-2">
-                          <CardTitle
-                            className="text-lg cursor-pointer hover:text-gray-300"
-                            onClick={() => setSelectedVideo(tutorial.id)}
-                          >
-                            {tutorial.title}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="pt-0">
-                          <CardDescription className="text-gray-400">{tutorial.description}</CardDescription>
-                        </CardContent>
-                      </Card>
-                    ))}
+        {/* Tutorials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherTutorials.map((tutorial) => (
+            <Card key={tutorial.id} className="bg-gray-800 border-gray-700 overflow-hidden">
+              <div className="aspect-video bg-gray-700 relative cursor-pointer">
+                <img
+                  src={tutorial.thumbnail || "/placeholder.svg"}
+                  alt={tutorial.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Coming Soon Overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
+                  <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
+                  <p className="text-lg font-bold text-white">Coming Soon</p>
                 </div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        )}
+                <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm z-20">
+                  {tutorial.duration}
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg">{tutorial.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-400">{tutorial.description}</CardDescription>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   )
 }
-
