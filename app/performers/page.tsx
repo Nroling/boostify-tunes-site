@@ -45,24 +45,6 @@ export default function PerformersPage() {
         <div className="particle p8" />
       </div>
 
-      {/* Main Performer Content */}
-      <div style={{ position: "relative", zIndex: 10, textAlign: "center", paddingTop: "200px" }}>
-        <h1 style={{ fontSize: "3rem", color: "#fff" }}>Meet the Performers</h1>
-        <p style={{ fontSize: "1.25rem", color: "#ddd", marginTop: "1rem" }}>
-          Enjoy the show with our amazing lineup of artists!
-        </p>
-        <div style={{ marginTop: "2rem" }}>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/BwX4d6d1_uQ"
-            title="YouTube video player"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
-
       {/* Tutorials Grid at the bottom */}
       <div style={{ position: "relative", zIndex: 10, marginTop: "4rem" }}>
         <Tutorials />
