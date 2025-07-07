@@ -16,24 +16,28 @@
   width: 100px;
   height: 300px;
   opacity: 0.7;
+  -webkit-filter: blur(50px);
   filter: blur(50px);
   border-radius: 50%;
 }
-
 .light-1 {
   background: linear-gradient(to bottom, #ff0055, #ff00ff);
   left: 20%;
+  -webkit-animation: light-move-1 8s infinite alternate;
   animation: light-move-1 8s infinite alternate;
 }
-
 .light-2 {
   background: linear-gradient(to bottom, #00ffff, #0066ff);
   left: 50%;
+  -webkit-animation: light-move-2 12s infinite alternate;
   animation: light-move-2 12s infinite alternate;
 }
-
 .light-3 {
   background: linear-gradient(to bottom, #ffaa00, #ff5500);
+  left: 80%;
+  -webkit-animation: light-move-3 10s infinite alternate;
+  animation: light-move-3 10s infinite alternate;
+}
   left: 80%;
   animation: light-move-3 10s infinite alternate;
 }

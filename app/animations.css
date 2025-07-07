@@ -1,5 +1,16 @@
 /* app/animations.css */
 
+@-webkit-keyframes concertLightPulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
 @keyframes concertLightPulse {
   0% {
     opacity: 0.6;
@@ -18,9 +29,20 @@
   height: 200px;
   border-radius: 50%;
   background: rgba(255, 0, 255, 0.3);
+  -webkit-animation: concertLightPulse 2s infinite;
   animation: concertLightPulse 2s infinite;
 }
 
+@-webkit-keyframes particleFloat {
+  0% {
+    -webkit-transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
 @keyframes particleFloat {
   0% {
     transform: translateY(0) scale(1);
@@ -38,5 +60,6 @@
   height: 4px;
   background: white;
   border-radius: 50%;
+  -webkit-animation: particleFloat 5s infinite linear;
   animation: particleFloat 5s infinite linear;
 }
