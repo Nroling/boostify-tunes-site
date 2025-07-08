@@ -165,8 +165,8 @@ export default function Home() {
             <Image
               src="/images/boostify-logo.png"
               alt="Boostify Tunes Logo"
-              width={240}
-              height={80}
+              width={640}
+              height={240}
               className="object-contain"
               priority
             />
