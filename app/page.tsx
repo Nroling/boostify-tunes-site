@@ -202,37 +202,37 @@ export default function Home() {
       </div>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
-          <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
-          <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
-            <Image
-              src="/images/boostify-logo.png"
-              alt="Boostify Tunes"
-              width={240}
-              height={80}
-              className="object-contain"
-              priority
-            />
-          </div>
-        </h1>
-        <p className="mt-4 text-xl md:text-2xl max-w-2xl">
-          Elevating live performances with real-time song requests and tipping
-        </p>
-        <div className="flex gap-4 mt-8">
-          <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
-            Download the App
-          </Button>
-          <Link href="/performers">
-            <Button
-              variant="outline"
-              className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
-            >
-              Watch Tutorials
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <div className="relative z-10 flex flex-col items-center justify-start h-full text-center px-4 pt-2 md:justify-center md:pt-0">
+  <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
+    <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
+    <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
+      <Image
+        src="/images/boostify-logo.png"
+        alt="Boostify Tunes"
+        width={240}
+        height={80}
+        className="object-contain"
+        priority
+      />
+    </div>
+  </h1>
+  <p className="mt-4 text-xl md:text-2xl max-w-2xl">
+    Elevating live performances with real-time song requests and tipping
+  </p>
+  <div className="flex gap-4 mt-8">
+    <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
+      Download the App
+    </Button>
+    <Link href="/performers">
+      <Button
+        variant="outline"
+        className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
+      >
+        Watch Tutorials
+      </Button>
+    </Link>
+  </div>
+</div>
       <style jsx>{`
         @keyframes fadeOut {
           0% { opacity: 1; }
