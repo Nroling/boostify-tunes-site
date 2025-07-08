@@ -119,7 +119,7 @@ export default function Tutorials() {
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <img
-                  src="https://drive.google.com/uc?export=view&id=1L4lxOlc5zaBnKLHJbmcaWw5S7JSzgvIV"
+                  src="https://drive.google.com/uc?export=view&id=1Rgj6plpHsJPU3XeP2IIX448HDaVS7V8F"
                   alt="Boostify"
                   className="h-40 w-auto mx-auto"
                 />
@@ -172,5 +172,3 @@ export default function Tutorials() {
         </div>
       </div>
     </div>
-  )
-}
