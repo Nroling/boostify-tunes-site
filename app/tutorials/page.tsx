@@ -16,7 +16,7 @@ export default function Tutorials() {
       description: "Learn the basics of setting up your Boostify account",
       duration: "5:32",
       category: "basics",
-      thumbnail: "https://img.youtube.com/vi/BwX4d6d1_uQ/hqdefault.jpg",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
       videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
@@ -25,7 +25,7 @@ export default function Tutorials() {
       description: "How to handle incoming song requests during performances",
       duration: "8:15",
       category: "performers",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
     },
     {
       id: "playlists",
@@ -33,7 +33,7 @@ export default function Tutorials() {
       description: "How to create and manage your playlists effectively",
       duration: "6:47",
       category: "playlists",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
     },
     {
       id: "audience",
@@ -41,7 +41,7 @@ export default function Tutorials() {
       description: "Best practices for engaging with your audience",
       duration: "10:23",
       category: "performers",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
     },
     {
       id: "profile",
@@ -49,7 +49,7 @@ export default function Tutorials() {
       description: "Make your profile stand out to attract more fans",
       duration: "7:19",
       category: "basics",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
     },
     {
       id: "adding-performer-event",
@@ -57,7 +57,7 @@ export default function Tutorials() {
       description: "Step-by-step guide to adding a new performer event.",
       duration: "3:45",
       category: "performers",
-      thumbnail: "https://img.youtube.com/vi/QZaJxnI5zFI/hqdefault.jpg",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
       videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
     },
   ]
@@ -142,7 +142,7 @@ export default function Tutorials() {
             >
               <div className="aspect-video bg-gray-700 relative">
                 <img
-                  src={tutorial.thumbnail || "/placeholder.svg"}
+                  src={tutorial.thumbnail}
                   alt={tutorial.title}
                   className="w-full h-full object-cover"
                 />
