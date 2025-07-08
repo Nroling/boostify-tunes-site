@@ -169,7 +169,8 @@ export default function Tutorials() {
               </CardContent>
             </Card>
           ))}
-                </div>
+        </div>
       </div>
-    )
+    </div>
+  )
 }
