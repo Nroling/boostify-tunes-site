@@ -16,7 +16,7 @@ export default function Tutorials() {
       duration: "5:32",
       category: "basics",
       thumbnail: "https://img.youtube.com/vi/BwX4d6d1_uQ/hqdefault.jpg",
-      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
+      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ?autoplay=1",
     },
     {
       id: "song-requests",
@@ -97,9 +97,14 @@ export default function Tutorials() {
           <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
             {selected.videoSrc ? (
               <iframe
-                src={selected.videoSrc}
+                src={
+                  selected === tutorials[0]
+                    ? `${selected.videoSrc}${selected.videoSrc.includes("?") ? "&" : "?"}autoplay=1`
+                    : selected.videoSrc
+                }
                 title={selected.title}
                 className="w-full h-full rounded-lg"
+                allow="autoplay; fullscreen"
                 allowFullScreen
               />
             ) : (
