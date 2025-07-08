@@ -3,8 +3,8 @@ import Image from "next/image";
 const documents = [
   {
     title: "Formatted Playlist CSV",
-    url: "https://drive.google.com/your-csv-link", // Replace with your actual Google Drive link
-    thumbnail: "/images/CSV-image.svg", // Replace with your CSV icon or use Boostify logo
+    url: "https://drive.google.com/your-csv-link",
+    thumbnail: "/images/CSV-image.svg",
   },
   {
     title: "Document 2",
@@ -47,13 +47,23 @@ export default function DocumentsPage() {
             className="bg-gray-800 rounded-lg shadow-lg flex flex-col items-center p-6 hover:bg-gray-700 transition"
           >
             <div className="w-32 h-32 mb-4 flex items-center justify-center">
-              <Image
-                src={doc.thumbnail}
-                alt={doc.title}
-                width={128}
-                height={128}
-                className="object-contain rounded"
-              />
+              {doc.thumbnail.endsWith(".svg") ? (
+                <img
+                  src={doc.thumbnail}
+                  alt={doc.title}
+                  width={128}
+                  height={128}
+                  className="object-contain rounded"
+                />
+              ) : (
+                <Image
+                  src={doc.thumbnail}
+                  alt={doc.title}
+                  width={128}
+                  height={128}
+                  className="object-contain rounded"
+                />
+              )}
             </div>
             <span className="text-lg font-semibold text-center">{doc.title}</span>
           </a>
