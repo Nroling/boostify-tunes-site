@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Play, Clock } from "lucide-react"
+import YouTube from "react-youtube"
 
 export default function Tutorials() {
   const tutorials = [
@@ -16,7 +17,7 @@ export default function Tutorials() {
       duration: "5:32",
       category: "basics",
       thumbnail: "https://img.youtube.com/vi/BwX4d6d1_uQ/hqdefault.jpg",
-      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ?autoplay=1",
+      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
       id: "song-requests",
@@ -25,7 +26,7 @@ export default function Tutorials() {
       duration: "8:15",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      // videoSrc: "", // Add a videoSrc when ready
+      // videoSrc: "",
     },
     {
       id: "tipping",
@@ -65,8 +66,14 @@ export default function Tutorials() {
     },
   ]
 
-  // State for selected tutorial
   const [selected, setSelected] = useState(tutorials[0])
+  const [videoEnded, setVideoEnded] = useState(false)
+
+  // Extract YouTube video ID from embed URL
+  const getVideoId = (url: string) => {
+    const match = url.match(/embed\/([a-zA-Z0-9_-]+)/)
+    return match ? match[1] : ""
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
@@ -95,23 +102,28 @@ export default function Tutorials() {
         {/* Main Video Section */}
         <div className="mb-12">
           <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
-            {selected.videoSrc ? (
-              <iframe
-                src={
-                  selected === tutorials[0]
-                    ? `${selected.videoSrc}${selected.videoSrc.includes("?") ? "&" : "?"}autoplay=1`
-                    : selected.videoSrc
-                }
-                title={selected.title}
+            {selected.videoSrc && !videoEnded ? (
+              <YouTube
+                videoId={getVideoId(selected.videoSrc)}
+                opts={{
+                  width: "100%",
+                  height: "100%",
+                  playerVars: {
+                    autoplay: 1,
+                    rel: 0,
+                  },
+                }}
                 className="w-full h-full rounded-lg"
-                allow="autoplay; fullscreen"
-                allowFullScreen
+                onEnd={() => setVideoEnded(true)}
               />
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
-                <Play className="h-16 w-16 opacity-50" />
-                <span className="sr-only">Play video</span>
-                <p className="text-lg mt-4">Main tutorial video coming soon!</p>
+                <img
+                  src="https://drive.google.com/uc?export=view&id=1L4lxOlc5zaBnKLHJbmcaWw5S7JSzgvIV"
+                  alt="Boostify"
+                  className="h-40 w-auto mx-auto"
+                />
+                <p className="text-lg mt-4">Thanks for watching!</p>
               </div>
             )}
           </div>
@@ -125,7 +137,12 @@ export default function Tutorials() {
             <Card
               key={tutorial.id}
               className={`bg-gray-800 border-gray-700 overflow-hidden cursor-pointer transition-all ${selected.id === tutorial.id ? "ring-2 ring-primary" : ""}`}
-              onClick={() => tutorial.videoSrc && setSelected(tutorial)}
+              onClick={() => {
+                if (tutorial.videoSrc) {
+                  setSelected(tutorial)
+                  setVideoEnded(false)
+                }
+              }}
             >
               <div className="aspect-video bg-gray-700 relative">
                 <img
