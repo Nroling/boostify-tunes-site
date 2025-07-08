@@ -119,7 +119,7 @@ export default function Tutorials() {
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <img
-                  src="/images/DJ%20Backdrop.jpg"
+                   src="/images/DJ-Backdrop.jpg"
                   alt="Boostify"
                   className="h-64 w-auto mx-auto mb-6"
                   style={{ maxHeight: "300px" }}
