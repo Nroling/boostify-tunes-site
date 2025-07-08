@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Play, Clock } from "lucide-react"
 
@@ -17,7 +16,7 @@ export default function Tutorials() {
       duration: "5:32",
       category: "basics",
       thumbnail: "https://img.youtube.com/vi/BwX4d6d1_uQ/hqdefault.jpg",
-      videoSrc: "https://youtu.be/BwX4d6d1_uQ",
+      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
       id: "song-requests",
@@ -26,6 +25,7 @@ export default function Tutorials() {
       duration: "8:15",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
+      // videoSrc: "", // Add a videoSrc when ready
     },
     {
       id: "tipping",
@@ -34,6 +34,7 @@ export default function Tutorials() {
       duration: "6:47",
       category: "payments",
       thumbnail: "/placeholder.svg?height=200&width=350",
+      // videoSrc: "",
     },
     {
       id: "audience",
@@ -42,6 +43,7 @@ export default function Tutorials() {
       duration: "10:23",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
+      // videoSrc: "",
     },
     {
       id: "profile",
@@ -50,6 +52,7 @@ export default function Tutorials() {
       duration: "7:19",
       category: "basics",
       thumbnail: "/placeholder.svg?height=200&width=350",
+      // videoSrc: "",
     },
     {
       id: "adding-performer-event",
@@ -58,13 +61,12 @@ export default function Tutorials() {
       duration: "3:45",
       category: "performers",
       thumbnail: "https://img.youtube.com/vi/QZaJxnI5zFI/hqdefault.jpg",
-      videoSrc: "https://youtu.be/QZaJxnI5zFI",
+      videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
     },
   ]
 
-  // Use the first tutorial as the main video
-  const mainTutorial = tutorials[0]
-  const otherTutorials = tutorials.slice(1)
+  // State for selected tutorial
+  const [selected, setSelected] = useState(tutorials[0])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
@@ -93,10 +95,10 @@ export default function Tutorials() {
         {/* Main Video Section */}
         <div className="mb-12">
           <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
-            {mainTutorial.videoSrc ? (
+            {selected.videoSrc ? (
               <iframe
-                src={mainTutorial.videoSrc}
-                title={mainTutorial.title}
+                src={selected.videoSrc}
+                title={selected.title}
                 className="w-full h-full rounded-lg"
                 allowFullScreen
               />
@@ -108,25 +110,31 @@ export default function Tutorials() {
               </div>
             )}
           </div>
-          <h2 className="text-2xl font-bold mb-2">{mainTutorial.title}</h2>
-          <p className="text-gray-300 mb-4">{mainTutorial.description}</p>
+          <h2 className="text-2xl font-bold mb-2">{selected.title}</h2>
+          <p className="text-gray-300 mb-4">{selected.description}</p>
         </div>
 
         {/* Tutorials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherTutorials.map((tutorial) => (
-            <Card key={tutorial.id} className="bg-gray-800 border-gray-700 overflow-hidden">
-              <div className="aspect-video bg-gray-700 relative cursor-pointer">
+          {tutorials.map((tutorial) => (
+            <Card
+              key={tutorial.id}
+              className={`bg-gray-800 border-gray-700 overflow-hidden cursor-pointer transition-all ${selected.id === tutorial.id ? "ring-2 ring-primary" : ""}`}
+              onClick={() => tutorial.videoSrc && setSelected(tutorial)}
+            >
+              <div className="aspect-video bg-gray-700 relative">
                 <img
                   src={tutorial.thumbnail || "/placeholder.svg"}
                   alt={tutorial.title}
                   className="w-full h-full object-cover"
                 />
-                {/* Coming Soon Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
-                  <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
-                  <p className="text-lg font-bold text-white">Coming Soon</p>
-                </div>
+                {/* Show "Coming Soon" overlay only if no videoSrc */}
+                {!tutorial.videoSrc && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
+                    <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
+                    <p className="text-lg font-bold text-white">Coming Soon</p>
+                  </div>
+                )}
                 <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm z-20">
                   {tutorial.duration}
                 </div>
