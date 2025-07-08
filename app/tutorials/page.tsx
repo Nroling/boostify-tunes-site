@@ -20,9 +20,9 @@ export default function Tutorials() {
       videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
-      id: "adding-performer-event",
-      title: "Adding a Performer Event",
-      description: "Step-by-step guide to adding a new performer event.",
+      id: "creating-performer-event",
+      title: "Creating a Performer Event",
+      description: "Step-by-step guide to creating a new performer event.",
       duration: "3:45",
       category: "performers",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
