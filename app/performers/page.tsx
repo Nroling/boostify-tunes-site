@@ -1,14 +1,25 @@
 import "../animations.css";
 import Tutorials from "../tutorials/page";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PerformersPage() {
   return (
     <div style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}>
       {/* Navigation */}
       <nav className="relative z-20 w-full p-4 flex justify-between items-center bg-black/70">
-        {/* Logo removed */}
-        <div />
+        <Link href="/" className="flex items-center">
+          <div className="relative h-8 w-auto">
+            <Image
+              src="/images/boostify-logo.png"
+              alt="Boostify Tunes Logo"
+              width={100}
+              height={30}
+              className="object-contain"
+              priority
+            />
+          </div>
+        </Link>
         <div className="flex gap-6">
           {/* Performers link removed */}
           <Link href="/about" className="hover:text-gray-300 transition-colors">
