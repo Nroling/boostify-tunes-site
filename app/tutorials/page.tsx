@@ -28,11 +28,11 @@ export default function Tutorials() {
       thumbnail: "/placeholder.svg?height=200&width=350",
     },
     {
-      id: "tipping",
-      title: "Setting Up Tipping",
-      description: "Configure your payment methods for receiving tips",
+      id: "playlists",
+      title: "Creating Playlists",
+      description: "How to create and manage your playlists effectively",
       duration: "6:47",
-      category: "payments",
+      category: "playlists",
       thumbnail: "/placeholder.svg?height=200&width=350",
     },
     {
