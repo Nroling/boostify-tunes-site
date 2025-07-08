@@ -207,7 +207,7 @@ export default function Home() {
     <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
     <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
       <Image
-        src="/images/boostify-logo.png"
+        src="/images/Transparent-Logo-with-TM.jpg"
         alt="Boostify Tunes"
         width={240}
         height={80}
