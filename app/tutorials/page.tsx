@@ -57,7 +57,7 @@ export default function Tutorials() {
       description: "Step-by-step guide to adding a new performer event.",
       duration: "3:45",
       category: "performers",
-      thumbnail: "https://img.youtube.com/vi/QZaJxnI5zFI/hqdefault.jpg",,
+      thumbnail: "https://img.youtube.com/vi/QZaJxnI5zFI/hqdefault.jpg",
       videoSrc: "https://youtu.be/QZaJxnI5zFI",
     },
   ]
