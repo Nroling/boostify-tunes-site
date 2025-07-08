@@ -21,9 +21,7 @@ export default function PerformersPage() {
           </div>
         </Link>
         <div className="flex gap-6">
-          <Link href="/performers" className="hover:text-gray-300 transition-colors">
-            Performers
-          </Link>
+          {/* Performers link removed */}
           <Link href="/about" className="hover:text-gray-300 transition-colors">
             About
           </Link>
