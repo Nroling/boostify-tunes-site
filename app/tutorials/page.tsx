@@ -119,11 +119,12 @@ export default function Tutorials() {
             ) : (
               <div className="flex flex-col items-center justify-center w-full h-full">
                 <img
-                  src="https://drive.google.com/uc?export=view&id=1Rgj6plpHsJPU3XeP2IIX448HDaVS7V8F"
+                  src="/images/DJ%20Backdrop.jpg"
                   alt="Boostify"
-                  className="h-40 w-auto mx-auto"
+                  className="h-64 w-auto mx-auto mb-6"
+                  style={{ maxHeight: "300px" }}
                 />
-                <p className="text-lg mt-4">Thanks for watching!</p>
+                <p className="text-3xl font-extrabold text-white drop-shadow-lg">Thanks for watching!</p>
               </div>
             )}
           </div>
@@ -172,5 +173,5 @@ export default function Tutorials() {
         </div>
       </div>
     </div>
-      )
+  )
 }
