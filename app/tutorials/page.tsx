@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Play, Clock } from "lucide-react"
+import { ArrowLeft, Clock } from "lucide-react"
 import YouTube from "react-youtube"
 
 export default function Tutorials() {
@@ -26,7 +26,6 @@ export default function Tutorials() {
       duration: "8:15",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      // videoSrc: "",
     },
     {
       id: "tipping",
@@ -35,7 +34,6 @@ export default function Tutorials() {
       duration: "6:47",
       category: "payments",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      // videoSrc: "",
     },
     {
       id: "audience",
@@ -44,7 +42,6 @@ export default function Tutorials() {
       duration: "10:23",
       category: "performers",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      // videoSrc: "",
     },
     {
       id: "profile",
@@ -53,7 +50,6 @@ export default function Tutorials() {
       duration: "7:19",
       category: "basics",
       thumbnail: "/placeholder.svg?height=200&width=350",
-      // videoSrc: "",
     },
     {
       id: "adding-performer-event",
@@ -117,13 +113,13 @@ export default function Tutorials() {
                 onEnd={() => setVideoEnded(true)}
               />
             ) : (
-              <div
-                className="flex flex-col items-center justify-center w-full h-full bg-center bg-cover"
-                style={{ backgroundImage: "url('/images/DJ-Backdrop.jpg')" }}
-              >
-                <div className="bg-black bg-opacity-60 p-8 rounded">
-                  <p className="text-3xl font-extrabold text-white drop-shadow-lg">Thanks for watching!</p>
-                </div>
+              <div className="flex items-center justify-center w-full h-full">
+                <img
+                  src="/images/DJ-Backdrop.jpg"
+                  alt="Boostify"
+                  className="h-64 w-auto mx-auto"
+                  style={{ maxHeight: "300px" }}
+                />
               </div>
             )}
           </div>
