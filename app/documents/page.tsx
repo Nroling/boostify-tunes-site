@@ -4,7 +4,7 @@ const documents = [
   {
     title: "Formatted Playlist CSV",
     url: "https://drive.google.com/your-csv-link", // Replace with your actual Google Drive link
-    thumbnail: "/images/CSV-image.png", // Replace with your CSV icon or use Boostify logo
+    thumbnail: "/images/CSV-image.svg", // Replace with your CSV icon or use Boostify logo
   },
   {
     title: "Document 2",
