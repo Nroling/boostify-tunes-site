@@ -15,54 +15,34 @@ export default function Home() {
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
 
-  // Initialize audio on component mount
   useEffect(() => {
     if (typeof window === "undefined") return
 
     try {
-      // Create audio element
       const audio = new Audio()
       audio.src =
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/flying-on-the-wings-of-love-SBA-300418391-preview%20%281%29-wQAKYZZdFt3nYHNxHHu5ew1hX4wMKn.mp3"
       audio.volume = 0.3
       audio.loop = true
 
-      // Store reference
       audioRef.current = audio
 
-      // Add event listeners
       const handleCanPlayThrough = () => {
-        console.log("Audio loaded and can play")
         setAudioLoaded(true)
-
-        // Try to play automatically when loaded
         playAudio()
       }
 
-      const handlePlay = () => {
-        console.log("Audio playing")
-        setIsPlaying(true)
-      }
-
-      const handlePause = () => {
-        console.log("Audio paused")
-        setIsPlaying(false)
-      }
-
-      const handleError = (e: Event) => {
-        console.error("Audio error:", e)
-        setAudioError("Error loading audio. Please try again.")
-      }
+      const handlePlay = () => setIsPlaying(true)
+      const handlePause = () => setIsPlaying(false)
+      const handleError = (e: Event) => setAudioError("Error loading audio. Please try again.")
 
       audio.addEventListener("canplaythrough", handleCanPlayThrough)
       audio.addEventListener("play", handlePlay)
       audio.addEventListener("pause", handlePause)
       audio.addEventListener("error", handleError)
 
-      // Preload the audio
       audio.load()
 
-      // Cleanup function
       return () => {
         if (audioRef.current) {
           audioRef.current.pause()
@@ -74,35 +54,25 @@ export default function Home() {
         }
       }
     } catch (error) {
-      console.error("Error initializing audio:", error)
       setAudioError("Could not initialize audio player")
     }
   }, [])
 
-  // Function to attempt to play audio
   const playAudio = () => {
     if (!audioRef.current) return
-
     const playPromise = audioRef.current.play()
-
     if (playPromise !== undefined) {
       playPromise
-        .then(() => {
-          console.log("Audio playback started successfully")
-        })
-        .catch((error) => {
-          console.error("Audio playback was prevented:", error)
+        .then(() => {})
+        .catch(() => {
           setIsPlaying(false)
           setAudioError("Browser blocked autoplay. Click the volume button to play.")
-
-          // Add a visible notification to inform the user they need to interact
           const notification = document.createElement("div")
           notification.className =
             "fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded z-50"
           notification.textContent = "Click the volume button to enable audio"
           notification.style.animation = "fadeOut 5s forwards"
           document.body.appendChild(notification)
-
           setTimeout(() => {
             document.body.removeChild(notification)
           }, 5000)
@@ -110,50 +80,33 @@ export default function Home() {
     }
   }
 
-  // Function to toggle audio playback
   const toggleAudio = () => {
-    console.log("Toggle audio button clicked")
-
     if (!audioRef.current) {
-      console.error("Audio element not initialized")
       setAudioError("Audio player not ready. Please try again.")
       return
     }
-
     try {
       if (isPlaying) {
-        console.log("Attempting to pause audio")
         audioRef.current.pause()
         setIsPlaying(false)
       } else {
-        console.log("Attempting to play audio")
         const playPromise = audioRef.current.play()
-
         if (playPromise !== undefined) {
           playPromise
-            .then(() => {
-              console.log("Audio playback started successfully")
-              setIsPlaying(true)
-            })
-            .catch((error) => {
-              console.error("Audio playback was prevented:", error)
-              setAudioError("Browser blocked autoplay. Please click again.")
-            })
+            .then(() => setIsPlaying(true))
+            .catch(() => setAudioError("Browser blocked autoplay. Please click again."))
         }
       }
-    } catch (error) {
-      console.error("Error toggling audio:", error)
+    } catch {
       setAudioError("Error controlling audio playback")
     }
   }
 
-  // Handle video load success
   const handleVideoLoad = () => {
     setVideoLoaded(true)
     setVideoError(false)
   }
 
-  // Handle video error
   const handleVideoError = () => {
     setVideoError(true)
     setVideoLoaded(false)
@@ -161,7 +114,7 @@ export default function Home() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black text-white">
-      {/* Background Video with direct Cloudfront URL */}
+      {/* Background Video */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
           ref={videoRef}
@@ -179,11 +132,8 @@ export default function Home() {
           />
           Your browser does not support the video tag.
         </video>
-
-        {/* Fallback animated background if video fails */}
         {videoError && (
           <div className="absolute inset-0">
-            {/* Concert-like animated gradient background */}
             <div
               className="absolute inset-0 bg-gradient-to-b from-purple-900 via-black to-black z-0"
               style={{
@@ -191,15 +141,11 @@ export default function Home() {
                 animation: "gradient 15s ease infinite",
               }}
             />
-
-            {/* Animated concert lights */}
             <div className="absolute inset-0 overflow-hidden">
               <div className="concert-light light-1"></div>
               <div className="concert-light light-2"></div>
               <div className="concert-light light-3"></div>
             </div>
-
-            {/* Crowd silhouette overlay */}
             <div
               className="absolute bottom-0 left-0 w-full h-1/3 bg-black z-10"
               style={{
@@ -209,8 +155,6 @@ export default function Home() {
             />
           </div>
         )}
-
-        {/* Overlay to darken the video slightly */}
         <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
       </div>
 
@@ -241,7 +185,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Audio Control Button - Moved closer to the middle */}
+      {/* Audio Control Button */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30">
         <button
           onClick={toggleAudio}
@@ -250,8 +194,6 @@ export default function Home() {
         >
           {isPlaying ? <Volume2 className="h-7 w-7 text-white" /> : <VolumeX className="h-7 w-7 text-white" />}
         </button>
-
-        {/* Audio Status (for debugging) */}
         {audioError && (
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 p-2 bg-red-500/80 text-white text-xs rounded whitespace-nowrap">
             {audioError}
@@ -261,8 +203,8 @@ export default function Home() {
 
       {/* Overlay Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 className="text-5xl md:text-7xl font-bold drop-shadow-xl flex items-center justify-center flex-wrap">
-          <span className="mr-2">Welcome to</span>
+        <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
+          <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
           <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
             <Image
               src="/images/boostify-logo.png"
@@ -292,13 +234,12 @@ export default function Home() {
         </div>
       </div>
       <style jsx>{`
-  @keyframes fadeOut {
-    0% { opacity: 1; }
-    70% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-`}</style>
+        @keyframes fadeOut {
+          0% { opacity: 1; }
+          70% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
     </div>
   )
 }
-
