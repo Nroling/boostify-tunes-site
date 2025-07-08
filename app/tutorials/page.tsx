@@ -16,7 +16,7 @@ export default function Tutorials() {
       description: "Learn the basics of setting up your Boostify account",
       duration: "5:32",
       category: "basics",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "https://img.youtube.com/vi/BwX4d6d1_uQ/hqdefault.jpg",
       videoSrc: "https://youtu.be/BwX4d6d1_uQ",
     },
     {
@@ -57,7 +57,7 @@ export default function Tutorials() {
       description: "Step-by-step guide to adding a new performer event.",
       duration: "3:45",
       category: "performers",
-      thumbnail: "/placeholder.svg?height=200&width=350",
+      thumbnail: "https://img.youtube.com/vi/QZaJxnI5zFI/hqdefault.jpg",,
       videoSrc: "https://youtu.be/QZaJxnI5zFI",
     },
   ]
