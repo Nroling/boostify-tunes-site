@@ -117,14 +117,13 @@ export default function Tutorials() {
                 onEnd={() => setVideoEnded(true)}
               />
             ) : (
-              <div className="flex flex-col items-center justify-center w-full h-full">
-                <img
-                   src="/images/DJ-Backdrop.jpg"
-                  alt="Boostify"
-                  className="h-64 w-auto mx-auto mb-6"
-                  style={{ maxHeight: "300px" }}
-                />
-                <p className="text-3xl font-extrabold text-white drop-shadow-lg">Thanks for watching!</p>
+              <div
+                className="flex flex-col items-center justify-center w-full h-full bg-center bg-cover"
+                style={{ backgroundImage: "url('/images/DJ-Backdrop.jpg')" }}
+              >
+                <div className="bg-black bg-opacity-60 p-8 rounded">
+                  <p className="text-3xl font-extrabold text-white drop-shadow-lg">Thanks for watching!</p>
+                </div>
               </div>
             )}
           </div>
@@ -172,6 +171,5 @@ export default function Tutorials() {
           ))}
         </div>
       </div>
-    </div>
-  )
-}
+      )
+    }
