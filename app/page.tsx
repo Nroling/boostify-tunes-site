@@ -207,7 +207,7 @@ export default function Home() {
     <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
     <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
       <Image
-        src="/images/Transparent-Logo-with-TM.jpg"
+        src="/images/boostify-logo.png"
         alt="Boostify Tunes"
         width={240}
         height={80}
@@ -219,7 +219,7 @@ export default function Home() {
   <p className="mt-4 text-xl md:text-2xl max-w-2xl">
     Elevating live performances with real-time song requests and tipping
   </p>
-  <div className="flex gap-4 mt-24">
+  <div className="flex gap-4 mt-36">
     <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
       Download the App
     </Button>
