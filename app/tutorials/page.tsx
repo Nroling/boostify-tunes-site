@@ -20,12 +20,13 @@ export default function Tutorials() {
       videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
-      id: "song-requests",
-      title: "Managing Song Requests",
-      description: "How to handle incoming song requests during performances",
-      duration: "8:15",
+      id: "adding-performer-event",
+      title: "Adding a Performer Event",
+      description: "Step-by-step guide to adding a new performer event.",
+      duration: "3:45",
       category: "performers",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
+      videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
     },
     {
       id: "playlists",
@@ -44,21 +45,20 @@ export default function Tutorials() {
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
     },
     {
+      id: "song-requests",
+      title: "Managing Song Requests",
+      description: "How to handle incoming song requests during performances",
+      duration: "8:15",
+      category: "performers",
+      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
+    },
+    {
       id: "profile",
       title: "Optimizing Your Profile",
       description: "Make your profile stand out to attract more fans",
       duration: "7:19",
       category: "basics",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
-    },
-    {
-      id: "adding-performer-event",
-      title: "Adding a Performer Event",
-      description: "Step-by-step guide to adding a new performer event.",
-      duration: "3:45",
-      category: "performers",
-      thumbnail: "/images/Transparent-Logo-with-TM.jpg",
-      videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
     },
   ]
 
