@@ -202,7 +202,7 @@ export default function Home() {
       </div>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center justify-start h-full text-center px-4 pt-2 md:justify-center md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-start h-full text-center px-4 pt-6 md:justify-center md:pt-0">
   <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
     <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
     <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
