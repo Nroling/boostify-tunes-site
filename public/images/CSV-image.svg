@@ -1,0 +1,23 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background sheet with green grid -->
+  <rect x="20" y="40" width="360" height="320" fill="#ffffff" stroke="#4CAF50" stroke-width="3" rx="8" ry="8"></rect>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#C8E6C9" stroke-width="1"></path>
+    </pattern>
+  </defs>
+  <rect x="20" y="40" width="360" height="320" fill="url(#grid)" rx="8" ry="8"></rect>
+
+  <!-- Header row has darker green -->
+  <rect x="20" y="40" width="360" height="40" fill="#A5D6A7" rx="8" ry="0"></rect>
+
+  <!-- CSV file icon in foreground -->
+  <g transform="translate(120, 100)">
+    <rect width="160" height="220" rx="8" ry="8" fill="#E8F5E9" stroke="#388E3C" stroke-width="2"></rect>
+    <text x="80" y="130" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="#2E7D32" font-weight="bold">CSV</text>
+  </g>
+
+  <!-- Download arrow under file icon -->
+  <path d="M200 300 l0 40 m-12 -12 l12 12 l12 -12" stroke="#1B5E20" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
