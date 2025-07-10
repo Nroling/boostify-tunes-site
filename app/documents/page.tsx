@@ -3,7 +3,7 @@ import Image from "next/image";
 const documents = [
   {
     title: "Formatted Playlist CSV",
-    url: "https://drive.google.com/your-csv-link",
+    url: "https://drive.google.com/https://docs.google.com/spreadsheets/d/1c7rzH98Pb1LjVocfzaAzhNaHuIPcHtav/edit?usp=drive_link&ouid=113304796862463573466&rtpof=true&sd=true",
     thumbnail: "/images/CSV-image.svg",
   },
   {
