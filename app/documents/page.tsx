@@ -69,5 +69,6 @@ export default function DocumentsPage() {
           </a>
         ))}
       </div>
+    </div>
   );
 }
