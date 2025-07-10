@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const documents = [
   {
-  title: "Formatted Playlist CSV",
-  url: "https://docs.google.com/spreadsheets/d/1c7rzH98Pb1LjVocfzaAzhNaHuIPcHtav/view",
-  thumbnail: "/images/CSV-image.svg",
-},
+    title: "Formatted Playlist CSV",
+    url: "https://docs.google.com/spreadsheets/d/1Eq1am_fNT0x0ym5RqLjYfIUDNBW3fELqmyEzeF6RRJ4/edit?usp=drive_link",
+    thumbnail: "/images/CSV-image.svg",
+  },
   {
     title: "Document 2",
     url: "https://drive.google.com/your-doc2-link",
