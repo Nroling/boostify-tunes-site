@@ -3,7 +3,7 @@ import Image from "next/image";
 const documents = [
   {
     title: "Formatted Playlist CSV",
-    url: "https://docs.google.com/spreadsheets/d/1Eq1am_fNT0x0ym5RqLjYfIUDNBW3fELqmyEzeF6RRJ4/edit?usp=drive_link",
+    url: "https://docs.google.com/spreadsheets/d/1V-rrxtW8xa73woR9Qth5bWIz6w582zU7X2wop3nl2W8/edit?usp=sharing",
     thumbnail: "/images/CSV-image.svg",
   },
   {
@@ -69,6 +69,5 @@ export default function DocumentsPage() {
           </a>
         ))}
       </div>
-    </div>
   );
 }
