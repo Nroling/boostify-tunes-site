@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -64,12 +64,39 @@ export default function Tutorials() {
 
   const [selected, setSelected] = useState(tutorials[0])
   const [videoEnded, setVideoEnded] = useState(false)
+  const [videoShouldPlay, setVideoShouldPlay] = useState(false)
+  const videoContainerRef = useRef<HTMLDivElement | null>(null)
 
   // Extract YouTube video ID from embed URL
   const getVideoId = (url: string) => {
     const match = url.match(/embed\/([a-zA-Z0-9_-]+)/)
     return match ? match[1] : ""
   }
+
+  // Play video on hover (desktop)
+  const handleMouseEnter = () => {
+    if (!videoShouldPlay) setVideoShouldPlay(true)
+  }
+
+  // Play video when scrolled into view (mobile/tablet)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (videoContainerRef.current && !videoShouldPlay) {
+        const rect = videoContainerRef.current.getBoundingClientRect()
+        if (rect.bottom < window.innerHeight && rect.top > 0) {
+          setVideoShouldPlay(true)
+        }
+      }
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [videoShouldPlay])
+
+  // Reset play state when changing video
+  useEffect(() => {
+    setVideoShouldPlay(false)
+    setVideoEnded(false)
+  }, [selected])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
@@ -96,9 +123,13 @@ export default function Tutorials() {
         </div>
 
         {/* Main Video Section */}
-        <div className="mb-12">
+        <div
+          className="mb-12"
+          ref={videoContainerRef}
+          onMouseEnter={handleMouseEnter}
+        >
           <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
-            {selected.videoSrc && !videoEnded ? (
+            {selected.videoSrc && !videoEnded && videoShouldPlay ? (
               <YouTube
                 videoId={getVideoId(selected.videoSrc)}
                 opts={{
@@ -113,13 +144,16 @@ export default function Tutorials() {
                 onEnd={() => setVideoEnded(true)}
               />
             ) : (
-              <div className="flex items-center justify-center w-full h-full">
+              <div className="flex items-center justify-center w-full h-full cursor-pointer">
                 <img
                   src="/images/boostify-logo.png"
                   alt="Boostify"
                   className="h-64 w-auto mx-auto"
                   style={{ maxHeight: "300px" }}
                 />
+                <span className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 px-4 py-2 rounded text-white text-lg">
+                  Hover or scroll to play
+                </span>
               </div>
             )}
           </div>
@@ -136,7 +170,6 @@ export default function Tutorials() {
               onClick={() => {
                 if (tutorial.videoSrc) {
                   setSelected(tutorial)
-                  setVideoEnded(false)
                 }
               }}
             >
