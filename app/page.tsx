@@ -127,7 +127,7 @@ export default function Home() {
           onError={handleVideoError}
         >
           <source
-            src="/videos/silhouettes-of-concert-crowd-in-front-bright-stage-lights-SBV-347652630-HD.mp4"
+            src="/videos/Home-Screen-Video.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
