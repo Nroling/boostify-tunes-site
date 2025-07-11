@@ -9,7 +9,7 @@ import { Volume2, VolumeX } from "lucide-react"
 export default function Home() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false) // Start silenced
   const [audioLoaded, setAudioLoaded] = useState(false)
   const [audioError, setAudioError] = useState<string | null>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
@@ -29,7 +29,8 @@ export default function Home() {
 
       const handleCanPlayThrough = () => {
         setAudioLoaded(true)
-        playAudio()
+        // Do NOT auto-play audio
+        // playAudio()
       }
 
       const handlePlay = () => setIsPlaying(true)
