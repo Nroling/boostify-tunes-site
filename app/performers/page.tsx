@@ -7,7 +7,7 @@ export default function PerformersPage() {
   return (
     <div style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}>
       {/* Navigation */}
-      <nav className="relative z-20 w-full p-4 flex justify-between items-center bg-black/70">
+      <nav className="relative z-20 w-full p-4 flex justify-between items-center bg-black">
         <Link href="/" className="flex items-center">
           <div className="relative h-8 w-auto">
             <Image
@@ -22,13 +22,13 @@ export default function PerformersPage() {
         </Link>
         <div className="flex gap-6">
           {/* Performers link removed */}
-          <Link href="/about" className="hover:text-gray-300 transition-colors">
+          <Link href="/about" className="text-white hover:text-gray-300 transition-colors">
             About
           </Link>
-          <Link href="/contact" className="hover:text-gray-300 transition-colors">
+          <Link href="/contact" className="text-white hover:text-gray-300 transition-colors">
             Contact
           </Link>
-          <Link href="/documents" className="hover:text-gray-300 transition-colors">
+          <Link href="/documents" className="text-white hover:text-gray-300 transition-colors">
             Documents
           </Link>
         </div>
