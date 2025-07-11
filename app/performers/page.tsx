@@ -4,42 +4,8 @@ import "../animations.css";
 import Tutorials from "../tutorials/page";
 import Link from "next/link";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
 
 export default function PerformersPage() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [videoStarted, setVideoStarted] = useState(false);
-
-  // Ensure video is paused on mount
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-  }, []);
-
-  // Play video on hover (desktop)
-  const handleVideoMouseEnter = () => {
-    if (videoRef.current && !videoStarted) {
-      videoRef.current.play();
-      setVideoStarted(true);
-    }
-  };
-
-  // Play video when scrolled down (mobile/tablet)
-  useEffect(() => {
-    const handleScroll = () => {
-      if (videoRef.current && !videoStarted) {
-        const rect = videoRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          videoRef.current.play();
-          setVideoStarted(true);
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [videoStarted]);
-
   return (
     <div style={{ position: "relative", overflow: "hidden", minHeight: "100vh" }}>
       {/* Navigation */}
@@ -68,20 +34,6 @@ export default function PerformersPage() {
           </Link>
         </div>
       </nav>
-
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        src="/videos/Home-Screen-Video.mp4"
-        loop
-        muted
-        playsInline
-        controls={false}
-        preload="none"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        onMouseEnter={handleVideoMouseEnter}
-        style={{ pointerEvents: "auto" }}
-      />
 
       {/* Concert Lights */}
       <div className="concert-light light-1" />
