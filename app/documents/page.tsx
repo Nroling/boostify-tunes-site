@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const documents = [
   {
@@ -36,6 +37,12 @@ const documents = [
 export default function DocumentsPage() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center py-12">
+      <Link
+        href="/"
+        className="mb-6 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition font-semibold"
+      >
+        ← Back to Home
+      </Link>
       <h1 className="text-4xl font-bold mb-8">Documents</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl px-4">
         {documents.map((doc, idx) => (
