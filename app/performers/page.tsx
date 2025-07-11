@@ -10,6 +10,13 @@ export default function PerformersPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [videoStarted, setVideoStarted] = useState(false);
 
+  // Ensure video is paused on mount
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
   // Play video on hover (desktop)
   const handleVideoMouseEnter = () => {
     if (videoRef.current && !videoStarted) {
