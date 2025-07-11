@@ -187,7 +187,7 @@ export default function Home() {
       </nav>
 
       {/* Audio Control Button */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center">
         <button
           onClick={toggleAudio}
           className="p-4 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
@@ -195,6 +195,7 @@ export default function Home() {
         >
           {isPlaying ? <Volume2 className="h-7 w-7 text-white" /> : <VolumeX className="h-7 w-7 text-white" />}
         </button>
+        <span className="mt-2 text-white text-sm opacity-80">Click For Sound</span>
         {audioError && (
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 p-2 bg-red-500/80 text-white text-xs rounded whitespace-nowrap">
             {audioError}
@@ -243,4 +244,3 @@ export default function Home() {
       `}</style>
     </div>
   )
-}
