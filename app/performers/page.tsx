@@ -1,3 +1,5 @@
+"use client";
+
 import "../animations.css";
 import Tutorials from "../tutorials/page";
 import Link from "next/link";
