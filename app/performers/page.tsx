@@ -77,6 +77,7 @@ export default function PerformersPage() {
         muted
         playsInline
         controls={false}
+        preload="none"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         onMouseEnter={handleVideoMouseEnter}
         style={{ pointerEvents: "auto" }}
