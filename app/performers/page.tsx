@@ -76,8 +76,8 @@ export default function PerformersPage() {
         <div className="particle p8" />
       </div>
 
-      {/* Tutorials Grid at the bottom */}
-      <div style={{ position: "relative", zIndex: 10, marginTop: "4rem" }}>
+      {/* Tutorials Grid at the top, filling space under nav */}
+      <div style={{ position: "relative", zIndex: 10, marginTop: "0" }}>
         <Tutorials />
       </div>
     </div>
