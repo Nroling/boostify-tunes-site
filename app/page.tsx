@@ -127,7 +127,7 @@ export default function Home() {
           onError={handleVideoError}
         >
           <source
-            src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/SyjJvDm-2lfvizvfc/videoblocks-645ef8411b460b77fcd3de03_h5eqjyvibn__d2d90ce8d78fcda5501a3b47fea8c2e8__P360.mp4"
+            src="/videos/silhouettes-of-concert-crowd-in-front-bright-stage-lights-SBV-347652630-HD.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -203,36 +203,36 @@ export default function Home() {
 
       {/* Overlay Content */}
       <div className="relative z-10 flex flex-col items-center justify-start h-full text-center px-4 pt-6 md:justify-center md:pt-0">
-  <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
-    <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
-    <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
-      <Image
-        src="/images/boostify-logo.png"
-        alt="Boostify Tunes"
-        width={320}
-        height={120}
-        className="object-contain"
-        priority
-      />
-    </div>
-  </h1>
-  <p className="mt-4 text-xl md:text-2xl max-w-2xl">
-    Elevating live performances with real-time song requests and tipping
-  </p>
-  <div className="flex gap-4 mt-72">
-    <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
-      Download the App
-    </Button>
-    <Link href="/performers">
-      <Button
-        variant="outline"
-        className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
-      >
-        Watch Tutorials
-      </Button>
-    </Link>
-  </div>
-</div>
+        <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
+          <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
+          <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
+            <Image
+              src="/images/boostify-logo.png"
+              alt="Boostify Tunes"
+              width={320}
+              height={120}
+              className="object-contain"
+              priority
+            />
+          </div>
+        </h1>
+        <p className="mt-4 text-xl md:text-2xl max-w-2xl">
+          Elevating live performances with real-time song requests and tipping
+        </p>
+        <div className="flex gap-4 mt-72">
+          <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
+            Download the App
+          </Button>
+          <Link href="/performers">
+            <Button
+              variant="outline"
+              className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
+            >
+              Watch Tutorials
+            </Button>
+          </Link>
+        </div>
+      </div>
       <style jsx>{`
         @keyframes fadeOut {
           0% { opacity: 1; }
