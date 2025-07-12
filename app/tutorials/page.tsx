@@ -29,12 +29,13 @@ export default function Tutorials() {
       videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
     },
     {
-      id: "playlists",
-      title: "Creating Playlists",
+      id: "creating-a-performer-playlist",
+      title: "Creating Performer Playlists",
       description: "How to create and manage your playlists effectively",
       duration: "6:47",
       category: "playlists",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
+      videoSrc: "/videos/Creating_a_Performer_Playlist.mp4",
     },
     {
       id: "audience",
