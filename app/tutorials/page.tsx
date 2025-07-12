@@ -38,12 +38,13 @@ export default function Tutorials() {
       videoSrc: "/videos/Creating_a_Performer_Playlist.mp4",
     },
     {
-      id: "audience",
-      title: "Audience Engagement Tips",
+      id: "adding-playlist-to-event",
+      title: "Adding a Playlist to and Event",
       description: "Best practices for engaging with your audience",
-      duration: "10:23",
-      category: "performers",
+      duration: "0:51",
+      category: "playlists",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
+      videoSrc: "/videos/Adding_a_Playlist_to_an_Event.mp4",
     },
     {
       id: "song-requests",
