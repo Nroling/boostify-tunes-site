@@ -12,8 +12,8 @@ export default function Tutorials() {
   const tutorials = [
     {
       id: "getting-started",
-      title: "Getting Started with Boostify",
-      description: "Learn the basics of setting up your Boostify account",
+      title: "Boost your fans Experience",
+      description: "Performers use Boostify to Boost the Fan Experience",
       duration: "0:41",
       category: "basics",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
