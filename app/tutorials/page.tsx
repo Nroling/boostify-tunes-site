@@ -67,12 +67,16 @@ export default function Tutorials() {
   const [videoEnded, setVideoEnded] = useState(false)
   const [videoShouldPlay, setVideoShouldPlay] = useState(false)
   const videoContainerRef = useRef<HTMLDivElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   // Extract YouTube video ID from embed URL
   const getVideoId = (url: string) => {
     const match = url.match(/embed\/([a-zA-Z0-9_-]+)/)
     return match ? match[1] : ""
   }
+
+  // Helper to check if src is YouTube
+  const isYouTube = (src: string) => src.includes("youtube.com")
 
   // Play video on hover (desktop)
   const handleMouseEnter = () => {
@@ -92,6 +96,18 @@ export default function Tutorials() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [videoShouldPlay])
+
+  // Play/pause native video when state changes
+  useEffect(() => {
+    if (videoRef.current) {
+      if (videoShouldPlay) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+    }
+  }, [videoShouldPlay, selected])
 
   // Reset play state when changing video
   useEffect(() => {
@@ -131,19 +147,30 @@ export default function Tutorials() {
         >
           <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
             {selected.videoSrc && !videoEnded && videoShouldPlay ? (
-              <YouTube
-                videoId={getVideoId(selected.videoSrc)}
-                opts={{
-                  width: "100%",
-                  height: "100%",
-                  playerVars: {
-                    autoplay: 1,
-                    rel: 0,
-                  },
-                }}
-                className="w-full h-full rounded-lg"
-                onEnd={() => setVideoEnded(true)}
-              />
+              isYouTube(selected.videoSrc) ? (
+                <YouTube
+                  videoId={getVideoId(selected.videoSrc)}
+                  opts={{
+                    width: "100%",
+                    height: "100%",
+                    playerVars: {
+                      autoplay: 1,
+                      rel: 0,
+                    },
+                  }}
+                  className="w-full h-full rounded-lg"
+                  onEnd={() => setVideoEnded(true)}
+                />
+              ) : (
+                <video
+                  ref={videoRef}
+                  src={selected.videoSrc}
+                  controls
+                  style={{ width: "100%", height: "100%", borderRadius: "0.5rem" }}
+                  preload="none"
+                  onEnded={() => setVideoEnded(true)}
+                />
+              )
             ) : (
               <div className="flex items-center justify-center w-full h-full cursor-pointer">
                 <img
