@@ -26,7 +26,7 @@ export default function Tutorials() {
       duration: "3:01",
       category: "performers",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
-      videoSrc: "https://www.youtube.com/embed/QZaJxnI5zFI",
+      videoSrc: "/videos/Adding_a_Performer_Event.mp4",
     },
     {
       id: "creating-a-performer-playlist",
