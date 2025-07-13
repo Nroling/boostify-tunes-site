@@ -47,12 +47,13 @@ export default function Tutorials() {
       videoSrc: "/videos/Adding_a_Playlist_to_an_Event.mp4",
     },
     {
-      id: "song-requests",
-      title: "Managing Song Requests",
-      description: "How to handle incoming song requests during performances",
-      duration: "8:15",
+      id: "managing-live-event-playlist,
+      title: "Managing Song Requests Live",
+      description: "How to handle incoming song requests during a live performances",
+      duration: "5:23",
       category: "performers",
       thumbnail: "/images/Transparent-Logo-with-TM.jpg",
+      videoSrc: "/videos/Managing_a_Live_Event_Playlist.mp4",
     },
     {
       id: "profile",
