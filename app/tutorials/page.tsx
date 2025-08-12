@@ -16,7 +16,7 @@ export default function Tutorials() {
       description: "Performers use Boostify to Boost the Fan Experience",
       duration: "0:41",
       category: "basics",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
       videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
     },
     {
@@ -25,7 +25,7 @@ export default function Tutorials() {
       description: "Step-by-step guide to creating a new performer event.",
       duration: "3:01",
       category: "performers",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
       videoSrc: "/videos/Adding_a_Performer_Event.mp4",
     },
     {
@@ -34,7 +34,7 @@ export default function Tutorials() {
       description: "How to create and manage your playlists effectively",
       duration: "2:53",
       category: "playlists",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
       videoSrc: "/videos/Creating_a_Performer_Playlist.mp4",
     },
     {
@@ -43,7 +43,7 @@ export default function Tutorials() {
       description: "Best practices for engaging with your audience",
       duration: "0:51",
       category: "playlists",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
       videoSrc: "/videos/Adding_a_Playlist_to_an_Event.mp4",
     },
     {
@@ -52,7 +52,7 @@ export default function Tutorials() {
       description: "How to handle incoming song requests during a live performances",
       duration: "5:23",
       category: "performers",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
       videoSrc: "/videos/Managing_a_Live_Event_Playlist.mp4",
     },
     {
@@ -61,7 +61,7 @@ export default function Tutorials() {
       description: "Your Portfolio is a complete list of every song you know",
       duration: "?:??",
       category: "Performers",
-      thumbnail: "/images/Boostify-logo.png",
+      thumbnail: "/images/boostify-logo.png",
     },
   ]
 
@@ -203,11 +203,11 @@ export default function Tutorials() {
                 }
               }}
             >
-              <div className="aspect-video bg-gray-700 relative">
+              <div className="aspect-video bg-gray-700 relative flex items-center justify-center">
                 <img
                   src="/images/boostify-logo.png"
                   alt={tutorial.title}
-                  className="w-full h-full object-cover"
+                  className="h-16 w-auto object-contain"
                 />
                 {/* Show "Coming Soon" overlay only if no videoSrc */}
                 {!tutorial.videoSrc && (
