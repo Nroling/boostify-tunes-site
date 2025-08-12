@@ -1,247 +1,235 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Volume2, VolumeX } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft, Clock } from "lucide-react"
+import YouTube from "react-youtube"
 
-export default function Home() {
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+export default function Tutorials() {
+  const tutorials = [
+    {
+      id: "getting-started",
+      title: "Boost your fans Experience",
+      description: "Performers use Boostify to Boost the Fan Experience",
+      duration: "0:41",
+      category: "basics",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+      videoSrc: "https://www.youtube.com/embed/BwX4d6d1_uQ",
+    },
+    {
+      id: "creating-performer-event",
+      title: "Creating a Performer Event",
+      description: "Step-by-step guide to creating a new performer event.",
+      duration: "3:01",
+      category: "performers",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+      videoSrc: "/videos/Adding_a_Performer_Event.mp4",
+    },
+    {
+      id: "creating-a-performer-playlist",
+      title: "Creating Performer Playlists",
+      description: "How to create and manage your playlists effectively",
+      duration: "2:53",
+      category: "playlists",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+      videoSrc: "/videos/Creating_a_Performer_Playlist.mp4",
+    },
+    {
+      id: "adding-playlist-to-event",
+      title: "Adding a Playlist to and Event",
+      description: "Best practices for engaging with your audience",
+      duration: "0:51",
+      category: "playlists",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+      videoSrc: "/videos/Adding_a_Playlist_to_an_Event.mp4",
+    },
+    {
+      id: "managing-live-event-playlist",
+      title: "Managing Song Requests Live",
+      description: "How to handle incoming song requests during a live performances",
+      duration: "5:23",
+      category: "performers",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+      videoSrc: "/videos/Managing_a_Live_Event_Playlist.mp4",
+    },
+    {
+      id: "portfolio",
+      title: "using-your-portfolio",
+      description: "Your Portfolio is a complete list of every song you know",
+      duration: "?:??",
+      category: "Performers",
+      thumbnail: "/images/Boostify-logo.png", // Updated to consistent name
+    },
+  ]
+
+  const [selected, setSelected] = useState(tutorials[0])
+  const [videoEnded, setVideoEnded] = useState(false)
+  const [videoShouldPlay, setVideoShouldPlay] = useState(false)
+  const videoContainerRef = useRef<HTMLDivElement | null>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false) // Start silenced
-  const [audioLoaded, setAudioLoaded] = useState(false)
-  const [audioError, setAudioError] = useState<string | null>(null)
-  const [videoLoaded, setVideoLoaded] = useState(false)
-  const [videoError, setVideoError] = useState(false)
 
+  // Extract YouTube video ID from embed URL
+  const getVideoId = (url: string) => {
+    const match = url.match(/embed\/([a-zA-Z0-9_-]+)/)
+    return match ? match[1] : ""
+  }
+
+  // Helper to check if src is YouTube
+  const isYouTube = (src: string) => src.includes("youtube.com")
+
+  // Play video on hover (desktop)
+  const handleMouseEnter = () => {
+    if (!videoShouldPlay) setVideoShouldPlay(true)
+  }
+
+  // Play video when scrolled into view (mobile/tablet)
   useEffect(() => {
-    if (typeof window === "undefined") return
-
-    try {
-      const audio = new Audio()
-      audio.src =
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/flying-on-the-wings-of-love-SBA-300418391-preview%20%281%29-wQAKYZZdFt3nYHNxHHu5ew1hX4wMKn.mp3"
-      audio.volume = 0.3
-      audio.loop = true
-
-      audioRef.current = audio
-
-      const handleCanPlayThrough = () => {
-        setAudioLoaded(true)
-        // Do NOT auto-play audio
-        // playAudio()
-      }
-
-      const handlePlay = () => setIsPlaying(true)
-      const handlePause = () => setIsPlaying(false)
-      const handleError = (e: Event) => setAudioError("Error loading audio. Please try again.")
-
-      audio.addEventListener("canplaythrough", handleCanPlayThrough)
-      audio.addEventListener("play", handlePlay)
-      audio.addEventListener("pause", handlePause)
-      audio.addEventListener("error", handleError)
-
-      audio.load()
-
-      return () => {
-        if (audioRef.current) {
-          audioRef.current.pause()
-          audioRef.current.removeEventListener("canplaythrough", handleCanPlayThrough)
-          audioRef.current.removeEventListener("play", handlePlay)
-          audioRef.current.removeEventListener("pause", handlePause)
-          audioRef.current.removeEventListener("error", handleError)
-          audioRef.current = null
+    const handleScroll = () => {
+      if (videoContainerRef.current && !videoShouldPlay) {
+        const rect = videoContainerRef.current.getBoundingClientRect()
+        if (rect.bottom < window.innerHeight && rect.top > 0) {
+          setVideoShouldPlay(true)
         }
       }
-    } catch (error) {
-      setAudioError("Could not initialize audio player")
     }
-  }, [])
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [videoShouldPlay])
 
-  const playAudio = () => {
-    if (!audioRef.current) return
-    const playPromise = audioRef.current.play()
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {})
-        .catch(() => {
-          setIsPlaying(false)
-          setAudioError("Browser blocked autoplay. Click the volume button to play.")
-          const notification = document.createElement("div")
-          notification.className =
-            "fixed top-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded z-50"
-          notification.textContent = "Click the volume button to enable audio"
-          notification.style.animation = "fadeOut 5s forwards"
-          document.body.appendChild(notification)
-          setTimeout(() => {
-            document.body.removeChild(notification)
-          }, 5000)
-        })
-    }
-  }
-
-  const toggleAudio = () => {
-    if (!audioRef.current) {
-      setAudioError("Audio player not ready. Please try again.")
-      return
-    }
-    try {
-      if (isPlaying) {
-        audioRef.current.pause()
-        setIsPlaying(false)
+  // Play/pause native video when state changes
+  useEffect(() => {
+    if (videoRef.current) {
+      if (videoShouldPlay) {
+        videoRef.current.play()
       } else {
-        const playPromise = audioRef.current.play()
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => setIsPlaying(true))
-            .catch(() => setAudioError("Browser blocked autoplay. Please click again."))
-        }
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
       }
-    } catch {
-      setAudioError("Error controlling audio playback")
     }
-  }
+  }, [videoShouldPlay, selected])
 
-  const handleVideoLoad = () => {
-    setVideoLoaded(true)
-    setVideoError(false)
-  }
-
-  const handleVideoError = () => {
-    setVideoError(true)
-    setVideoLoaded(false)
-  }
+  // Reset play state when changing video
+  useEffect(() => {
+    setVideoShouldPlay(false)
+    setVideoEnded(false)
+  }, [selected])
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black text-white">
-      {/* Background Video */}
-      <div className="absolute top-0 left-0 w-full h-full z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          onLoadedData={handleVideoLoad}
-          onError={handleVideoError}
-        >
-          <source
-            src="/videos/Home-Screen-Video.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-        {videoError && (
-          <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 bg-gradient-to-b from-purple-900 via-black to-black z-0"
-              style={{
-                backgroundSize: "400% 400%",
-                animation: "gradient 15s ease infinite",
-              }}
-            />
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="concert-light light-1"></div>
-              <div className="concert-light light-2"></div>
-              <div className="concert-light light-3"></div>
-            </div>
-            <div
-              className="absolute bottom-0 left-0 w-full h-1/3 bg-black z-10"
-              style={{
-                maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
-                WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
-              }}
-            />
-          </div>
-        )}
-        <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="relative z-20 w-full p-4 flex justify-between items-center">
-        <Link href="/" className="flex items-center">
-          <div className="relative h-8 w-auto">
-            <Image
-              src="/images/boostify-logo.png"
-              alt="Boostify Tunes Logo"
-              width={240}
-              height={80}
-              className="object-contain"
-              priority
-            />
-          </div>
-        </Link>
-        <div className="flex gap-6">
-          <Link href="/performers" className="hover:text-gray-300 transition-colors">
-            Performers
-          </Link>
-          <Link href="/about" className="hover:text-gray-300 transition-colors">
-            About
-          </Link>
-          <Link href="/contact" className="hover:text-gray-300 transition-colors">
-            Contact
-          </Link>
-        </div>
-      </nav>
-
-      {/* Audio Control Button */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center">
-        <button
-          onClick={toggleAudio}
-          className="p-4 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
-          aria-label={isPlaying ? "Mute audio" : "Play audio"}
-        >
-          {isPlaying ? <Volume2 className="h-7 w-7 text-white" /> : <VolumeX className="h-7 w-7 text-white" />}
-        </button>
-        <span className="mt-2 text-white text-sm opacity-80">Click For Sound</span>
-        {audioError && (
-          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 p-2 bg-red-500/80 text-white text-xs rounded whitespace-nowrap">
-            {audioError}
-          </div>
-        )}
-      </div>
-
-      {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center justify-start h-full text-center px-4 pt-6 md:justify-center md:pt-0">
-        <h1 className="flex flex-col md:flex-row items-center justify-center text-5xl md:text-7xl font-bold drop-shadow-xl text-center md:text-left">
-          <span className="mb-4 md:mb-0 md:mr-4">Welcome to</span>
-          <div className="relative h-16 md:h-20 w-auto inline-flex items-center">
-            <Image
-              src="/images/boostify-logo.png"
-              alt="Boostify Tunes"
-              width={320}
-              height={120}
-              className="object-contain"
-              priority
-            />
-          </div>
-        </h1>
-        <p className="mt-4 text-xl md:text-2xl max-w-2xl">
-          Elevating live performances with real-time song requests and tipping
-        </p>
-        <div className="flex gap-4 mt-72">
-          <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
-            Download the App
-          </Button>
-          <Link href="/performers">
-            <Button
-              variant="outline"
-              className="text-lg px-6 py-3 rounded-2xl border-white text-white hover:bg-white/10"
-            >
-              Watch Tutorials
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center mb-8">
+          <Link href="/">
+            <Button variant="ghost" className="p-0 mr-4">
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              Back to Home
             </Button>
           </Link>
+          <div className="flex items-center">
+            <div className="relative h-8 w-auto mr-4">
+              <Image
+                src="/images/Boostify-logo.png" // Updated to consistent name
+                alt="Boostify Tunes Logo"
+                width={100}
+                height={30}
+                className="object-contain"
+              />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold">Performer Tutorials</h1>
+          </div>
+        </div>
+
+        {/* Main Video Section */}
+        <div
+          className="mb-12"
+          ref={videoContainerRef}
+          onMouseEnter={handleMouseEnter}
+        >
+          <div className="aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center relative">
+            {selected.videoSrc && !videoEnded && videoShouldPlay ? (
+              isYouTube(selected.videoSrc) ? (
+                <YouTube
+                  videoId={getVideoId(selected.videoSrc)}
+                  opts={{
+                    width: "100%",
+                    height: "100%",
+                    playerVars: {
+                      autoplay: 1,
+                      rel: 0,
+                    },
+                  }}
+                  className="w-full h-full rounded-lg"
+                  onEnd={() => setVideoEnded(true)}
+                />
+              ) : (
+                <video
+                  ref={videoRef}
+                  src={selected.videoSrc}
+                  controls
+                  style={{ width: "100%", height: "100%", borderRadius: "0.5rem" }}
+                  preload="none"
+                  onEnded={() => setVideoEnded(true)}
+                />
+              )
+            ) : (
+              <div className="flex items-center justify-center w-full h-full cursor-pointer">
+                <img
+                  src="/images/Boostify-logo.png" // Updated to consistent name
+                  alt="Boostify"
+                  className="h-64 w-auto mx-auto"
+                  style={{ maxHeight: "300px" }}
+                />
+                <span className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 px-4 py-2 rounded text-white text-lg">
+                  Hover or scroll to play
+                </span>
+              </div>
+            )}
+          </div>
+          <h2 className="text-2xl font-bold mb-2">{selected.title}</h2>
+          <p className="text-gray-300 mb-4">{selected.description}</p>
+        </div>
+
+        {/* Tutorials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tutorials.map((tutorial) => (
+            <Card
+              key={tutorial.id}
+              className={`bg-gray-800 border-gray-700 overflow-hidden cursor-pointer transition-all ${selected.id === tutorial.id ? "ring-2 ring-primary" : ""}`}
+              onClick={() => {
+                if (tutorial.videoSrc) {
+                  setSelected(tutorial)
+                }
+              }}
+            >
+              <div className="aspect-video bg-gray-700 relative">
+                <img
+                  src={tutorial.thumbnail}
+                  alt={tutorial.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Show "Coming Soon" overlay only if no videoSrc */}
+                {!tutorial.videoSrc && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 z-10">
+                    <Clock className="h-10 w-10 mb-2 text-white opacity-70" />
+                    <p className="text-lg font-bold text-white">Coming Soon</p>
+                  </div>
+                )}
+                <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-sm z-20">
+                  {tutorial.duration}
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg">{tutorial.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <CardDescription className="text-gray-400">{tutorial.description}</CardDescription>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
-      <style jsx>{`
-        @keyframes fadeOut {
-          0% { opacity: 1; }
-          70% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-      `}</style>
     </div>
   )
 }
