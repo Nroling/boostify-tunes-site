@@ -205,7 +205,7 @@ export default function Tutorials() {
             >
               <div className="aspect-video bg-gray-700 relative">
                 <img
-                  src="/images/boostify-logo.png" // Changed from tutorial.thumbnail to direct logo path
+                  src="/images/boostify-logo.png"
                   alt={tutorial.title}
                   className="w-full h-full object-cover"
                 />
@@ -229,5 +229,7 @@ export default function Tutorials() {
             </Card>
           ))}
         </div>
+      </div>
+    </div>
   )
 }
