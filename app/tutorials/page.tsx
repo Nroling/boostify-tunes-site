@@ -207,7 +207,7 @@ export default function Tutorials() {
                 <img
                   src="/images/boostify-logo.png"
                   alt={tutorial.title}
-                  className="h-16 w-auto object-contain"
+                  className="h-32 w-auto object-contain"
                 />
                 {/* Show "Coming Soon" overlay only if no videoSrc */}
                 {!tutorial.videoSrc && (
