@@ -190,7 +190,7 @@ export default function Tutorials() {
           <h2 className="text-2xl font-bold mb-2">{selected.title}</h2>
           <p className="text-gray-300 mb-4">{selected.description}</p>
         </div>
-
+        
         {/* Tutorials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tutorials.map((tutorial) => (
@@ -205,7 +205,7 @@ export default function Tutorials() {
             >
               <div className="aspect-video bg-gray-700 relative">
                 <img
-                  src={tutorial.thumbnail}
+                  src="/images/boostify-logo.png" // Changed from tutorial.thumbnail to direct logo path
                   alt={tutorial.title}
                   className="w-full h-full object-cover"
                 />
@@ -229,7 +229,5 @@ export default function Tutorials() {
             </Card>
           ))}
         </div>
-      </div>
-    </div>
   )
 }
