@@ -80,6 +80,28 @@ export default function Tutorials() {
   // Helper to check if src is YouTube
   const isYouTube = (src: string) => src.includes("youtube.com")
 
+  // Function to scroll to video viewer
+  const scrollToVideo = () => {
+    if (videoContainerRef.current) {
+      videoContainerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      })
+    }
+  }
+
+  // Handle tutorial selection with auto-scroll
+  const handleTutorialSelect = (tutorial: any) => {
+    if (tutorial.videoSrc) {
+      setSelected(tutorial)
+      // Small delay to ensure state updates before scrolling
+      setTimeout(() => {
+        scrollToVideo()
+        setVideoShouldPlay(true)
+      }, 100)
+    }
+  }
+
   // Play video on hover (desktop)
   const handleMouseEnter = () => {
     if (!videoShouldPlay) setVideoShouldPlay(true)
@@ -182,7 +204,7 @@ export default function Tutorials() {
                   style={{ maxHeight: "300px" }}
                 />
                 <span className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 px-4 py-2 rounded text-white text-lg">
-                  Hover or scroll to play
+                  Click a tutorial below to play
                 </span>
               </div>
             )}
@@ -196,12 +218,8 @@ export default function Tutorials() {
           {tutorials.map((tutorial) => (
             <Card
               key={tutorial.id}
-              className={`bg-gray-800 border-gray-700 overflow-hidden cursor-pointer transition-all ${selected.id === tutorial.id ? "ring-2 ring-primary" : ""}`}
-              onClick={() => {
-                if (tutorial.videoSrc) {
-                  setSelected(tutorial)
-                }
-              }}
+              className={`bg-gray-800 border-gray-700 overflow-hidden cursor-pointer transition-all hover:bg-gray-700 ${selected.id === tutorial.id ? "ring-2 ring-blue-500" : ""}`}
+              onClick={() => handleTutorialSelect(tutorial)}
             >
               <div className="aspect-video bg-gray-700 relative flex items-center justify-center">
                 <img
