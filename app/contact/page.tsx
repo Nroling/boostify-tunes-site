@@ -112,7 +112,7 @@ export default function Contact() {
                   <Phone className="h-6 w-6 mr-4 mt-1 text-gray-400" />
                   <div>
                     <h3 className="font-medium">Call Us</h3>
-                    <p className="text-gray-300">(702) 347-2956</p>
+                    <p className="text-gray-300">(800) 319-3317</p>
                   </div>
                 </div>
               </div>
