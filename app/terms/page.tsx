@@ -34,13 +34,13 @@ export default function Terms() {
         {/* Content */}
         <div className="max-w-4xl mx-auto prose prose-invert">
           <div className="bg-gray-800 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-white">Terms & Conditions</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Boostify Tunes – Terms & Conditions</h2>
             <p className="text-gray-300 mb-4">Effective Date: July 12, 2025</p>
 
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-3 text-white">1. Acceptance of Terms</h3>
               <p className="text-gray-300 mb-4">
-                By downloading or using Boostify (the "App"), you agree to these Terms & Conditions and our Privacy Policy.
+                By downloading or using Boostify Tunes (the "App"), you agree to these Terms & Conditions and our Privacy Policy.
               </p>
             </section>
 
@@ -57,7 +57,7 @@ export default function Terms() {
                 You may sign up as a Performer or User.
               </p>
               <p className="text-gray-300 mb-4">
-                You're responsible for maintaining the confidentiality of your password and for all account activity.
+                You are responsible for maintaining the confidentiality of your password and for all account activity.
               </p>
             </section>
 
@@ -70,17 +70,17 @@ export default function Terms() {
                 <strong>Usage:</strong> Boost Bucks may be used to request songs, boost song positions in an event queue, or tip performers.
               </p>
               <p className="text-gray-300 mb-4">
-                <strong>No Refunds:</strong> All Boost Bucks purchases are final and non-refundable except as required by law.
+                <strong>Non-Refundable:</strong> All Boost Bucks purchases are strictly non-refundable and have no cash value outside the Boostify Tunes app.
               </p>
             </section>
 
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-3 text-white">5. Performer Events, Song Requests & Payouts</h3>
               <p className="text-gray-300 mb-4">
-                <strong>Event Creation:</strong> Performers create and manage events, build their portfolios and playlists.
+                <strong>Event Creation:</strong> Performers create and manage events, build their portfolios, and playlists.
               </p>
               <p className="text-gray-300 mb-4">
-                <strong>Reserve Pricing:</strong> For any song in a performer's portfolio, a "reserve" price may be set; reserve songs remain in the boost zone (main queue) until the reserve amount is met before advancing to "next up" or "now playing."
+                <strong>Reserve Pricing:</strong> For any song in a performer's portfolio, a "reserve" price may be set. Reserve songs remain in the boost zone (main queue) until the reserve amount is met before advancing to "up next" or "now playing."
               </p>
               <p className="text-gray-300 mb-4">
                 <strong>Song Requests & Boosting:</strong> Listeners request songs to the queue and may boost them; the App orders the queue based on Boost Bucks spent.
@@ -91,7 +91,7 @@ export default function Terms() {
               <ul className="text-gray-300 mb-4 list-disc list-inside ml-4">
                 <li>Performers sign up with Stripe Connect—there is no signup fee.</li>
                 <li>Once an event is complete (or automatically closed 24 hours after its scheduled end), payouts are initiated via Stripe Connect.</li>
-                <li>All payouts are subject to a 25% service fee retained by Boostify.</li>
+                <li>All payouts are subject to a 25% service fee retained by Boostify Tunes.</li>
               </ul>
             </section>
 
@@ -101,14 +101,14 @@ export default function Terms() {
                 You agree not to post unlawful, harmful, or infringing content.
               </p>
               <p className="text-gray-300 mb-4">
-                Boostify reserves the right to remove any content or suspend accounts for violations.
+                Boostify Tunes reserves the right to remove any content or suspend accounts for violations.
               </p>
             </section>
 
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-3 text-white">7. Intellectual Property</h3>
               <p className="text-gray-300 mb-4">
-                All Boostify trademarks, logos, and software are our property.
+                All Boostify Tunes trademarks, logos, and software are our property.
               </p>
               <p className="text-gray-300 mb-4">
                 You grant us a non-exclusive license to use content you upload solely to operate and improve the App.
@@ -121,7 +121,7 @@ export default function Terms() {
                 The App is provided "as is." We disclaim all warranties, express or implied.
               </p>
               <p className="text-gray-300 mb-4">
-                To the maximum extent permitted by law, Boostify's liability for any claim related to the App is limited to the total amount of Boost Bucks you've purchased in the previous six months.
+                To the maximum extent permitted by law, Boostify Tunes' liability for any claim related to the App is limited to the total amount of Boost Bucks you've purchased in the previous six months.
               </p>
             </section>
 
@@ -144,6 +144,36 @@ export default function Terms() {
               <p className="text-gray-300 mb-4">
                 We may modify these Terms. If changes are material, we'll notify you via the App or email. Continued use after changes constitutes acceptance.
               </p>
+            </section>
+
+            <section className="mb-6">
+              <h3 className="text-xl font-semibold mb-3 text-white">Boost Bucks Terms</h3>
+              
+              <h4 className="text-lg font-semibold mb-2 text-white">Nature of Boost Bucks</h4>
+              <p className="text-gray-300 mb-4">
+                Boost Bucks are prepaid, non-transferable credits that may only be used within the Boostify Tunes app to request songs, boost songs, or tip performers. Boost Bucks are strictly non-refundable and have no cash value outside the Boostify Tunes app.
+              </p>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Expiration</h4>
+              <p className="text-gray-300 mb-4">
+                All Boost Bucks expire 12 months after the date of purchase. After expiration, any unused Boost Bucks will be forfeited and removed from your account.
+              </p>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Governing Law</h4>
+              <p className="text-gray-300 mb-4">
+                Boost Bucks are issued by Boostify Tunes LLC, a Nevada limited liability company, and are governed exclusively by Nevada law.
+              </p>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Non-Transferability</h4>
+              <p className="text-gray-300 mb-4">
+                Boost Bucks may not be transferred, sold, or assigned to another user or account.
+              </p>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Fraud & Misuse</h4>
+              <p className="text-gray-300 mb-4">
+                Boostify Tunes reserves the right to suspend or cancel Boost Bucks balances if they are obtained fraudulently, used in violation of these Terms, or otherwise abused.
+              </p>
+
               <p className="text-gray-300">
                 If you have any questions about these Terms and Conditions, please contact us at{" "}
                 <Link href="/contact" className="text-blue-400 hover:text-blue-300">
