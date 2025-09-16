@@ -224,9 +224,15 @@ export default function Home() {
             Elevating live performances with real-time song requests and tipping
           </p>
           <div className="flex gap-4 mt-72">
-            <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
-              Download the App
-            </Button>
+            <a 
+              href="https://sholink.to/Boostify" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button className="text-lg px-6 py-3 rounded-2xl bg-white text-black hover:bg-gray-200">
+                Download the App
+              </Button>
+            </a>
             <Link href="/performers">
               <Button
                 variant="outline"
